@@ -55,7 +55,9 @@ class MySQLHelper:
         value = ','.join(p_data.values())
         real_sql = "INSERT INTO " + p_table_name + " (" + key + ") VALUES (" + value + ")"
         #self.query("set names 'utf8'")
-        return self.query(real_sql)
+        ret = self.query(real_sql)
+        self.commit()
+        return ret
 
 
     def getLastInsertId(self):
