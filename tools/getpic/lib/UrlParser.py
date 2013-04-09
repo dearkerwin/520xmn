@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 """
-获取html代码上的 超链接 和 图片链接
+分析html代码，获取html代码上的 超链接 和 图片链接
 eg:
     url = "http://www.baidu.com"
-    html = '<a href="http://hi.baidu.com/217a007/item/45134fb6465150d484dd79c0" >'
-    Parser = UrlParser()
-    Parser.feed(url,html)
-    Parser.getLinks()
+    html = '<body><a href="http://hi.baidu.com/217a007/item/45134fb6465150d484dd79c0" ></body>'
+    parser = UrlParser()
+    parser.feed(url,html)
+    links = parser.getLinks()
 
 version 0.2
 author kerwin

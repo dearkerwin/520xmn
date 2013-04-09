@@ -109,3 +109,10 @@ class HtmlHelper():
             print e.__class__, e, url
             found = False
         return found
+
+    """ 获取url的host """
+    def getHost(self, url):
+        if url==None: return None
+        if url=="" : return ""
+        host = urlparse.urlsplit(url)[1]
+        return host
