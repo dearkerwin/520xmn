@@ -37,11 +37,11 @@ import threading
 # parser = GirlPareCn.GirlPareCn()
 # htmlHelpr = HtmlHelper.HtmlHelper()
 # beginLink = 'http://localhost/tmp/girl13.com.html';
-# allLinks = []
+# todoLinks = []
 # allowHost = []
 # allowHost.append( htmlHelpr.getHost(beginLink) )
 # allowHost.append("girl.pare.cn")
-# allLinks.append(beginLink)
+# todoLinks.append(beginLink)
 
 
 
@@ -58,27 +58,28 @@ import threading
 # links = parser.getLinks()
 # # print links;
 # for link in links:
-# 	if link[-4:] != 'html' and link not in allLinks:
+# 	if link[-4:] != 'html' and link not in todoLinks:
 # 		host = htmlHelpr.getHost(link)
 # 		if host not in allowHost:
 # 			##纪录log
 # 			continue
-# 		allLinks.append(link)
+# 		todoLinks.append(link)
 
-# print allLinks
+# print todoLinks
 
 # print htmlHelpr.getHost("http://girl.pare.cn/page/4")
 
 
 class Producer(threading.Thread):
 
-	def __init__(self, lock, imgQueue, allLinks, allowHost,  maxSize = 100):
+	def __init__(self, lock, imgQueue, todoLinks, allowHost, maxSize = 100):
 		self._lock = lock
 		threading.Thread.__init__(self)
 		self.imgQueue = imgQueue
-		self.allLinks = allLinks
+		self.todoLinks = todoLinks
 		self.maxSize = maxSize
 		self.allowHost = allowHost
+		self.doneLinks = []  #记录已经出来过的links
 
 
 
@@ -87,8 +88,12 @@ class Producer(threading.Thread):
 		parser = GirlPareCn.GirlPareCn()
 		htmlHelpr = HtmlHelper.HtmlHelper()
 
-		for beginLink in self.allLinks:
+
+		# for beginLink in self.todoLinks:
+		while self.todoLinks.qsize() > 0:
 			if self._lock.acquire():
+				beginLink = self.todoLinks.get()
+				self.doneLinks.append(beginLink)
 				html = htmlHelpr.gGetHtml(beginLink)
 				parser.feed(beginLink,html)
 
@@ -103,20 +108,20 @@ class Producer(threading.Thread):
 					print "producer add imgQueue ---- size :" +str(self.imgQueue.qsize()) 
 
 
-					# add link to allLinks
+					# add link to todoLinks
 					links = parser.getLinks()
 					for link in links:
-						if link[-4:] != 'html' and link not in self.allLinks:
+						if link[-4:] != 'html' and link not in self.doneLinks:
 							host = htmlHelpr.getHost(link)
 							if host not in self.allowHost:
 								##纪录log
 								continue
-							# self.allLinks.append(beginLink)	
-							self.allLinks.append(link)
-			
-					print "producer add allLinks ---- size :" + str( len(self.allLinks) )
+							# self.todoLinks.put(beginLink)	#dev
+							# self.todoLinks.put(link)		#真实
+					print "producer add todoLinks ---- size : "+ str(len(self.doneLinks) ) +"/" + str( self.todoLinks.qsize() + len(self.doneLinks) )
 					self._lock.notify()
 				self._lock.release()
+
 
 
 
@@ -133,10 +138,11 @@ class Producer(threading.Thread):
 
 class Consumer(threading.Thread):
 
-	def __init__(self, lock, imgQueue):
+	def __init__(self, lock, imgQueue, todoLinks ):
 		self._lock = lock
 		threading.Thread.__init__(self)
 		self.imgQueue = imgQueue
+		self.todoLinks = todoLinks
 
 
 	def run(self):
@@ -144,9 +150,14 @@ class Consumer(threading.Thread):
 			if self._lock.acquire():
 				if self.imgQueue.qsize() <= 0 :
 					#queue is empty
-					#介绍条件  当 allLink is empty break; 未完成，  (前提条件，把allLink 换成一个queue 或者增加一个变量)
-					print " Consumer stop ----size :" + str(self.imgQueue.qsize() )
-					self._lock.wait()
+					if( self.todoLinks.qsize() == 0):
+						print " Consumer stop ---- "
+						self._lock.release()
+						break
+					else :
+						print "todoLinks size:" + str( self.todoLinks.qsize() )
+						print " Consumer suspend ----size :" + str(self.imgQueue.qsize() )
+						self._lock.wait()
 				else:
 					item = self.imgQueue.get(1)
 					# self.itemHelper.eatItem(item)
@@ -157,8 +168,7 @@ class Consumer(threading.Thread):
 
 
 	def downloadPic( self, item ):
-
-
+		return;
 
 
 
@@ -170,25 +180,27 @@ def test():
 	lock = threading.Condition()
 	imgQueue = Queue.Queue()  #队列
 	htmlHelpr = HtmlHelper.HtmlHelper()
-	beginLink = 'http://localhost/tmp/girl13.com.html';
-	allLinks = []
+	# beginLink = 'http://localhost/tmp/girl13.com.html';
+	beginLink = 'http://girl.pare.cn';
+	todoLinks = Queue.Queue()
 	allowHost = []
 	allowHost.append( htmlHelpr.getHost(beginLink) )
 	allowHost.append("girl.pare.cn")
-	allLinks.append(beginLink)
+	todoLinks.put(beginLink)
+
 
 	#producer
-	p = Producer(lock, imgQueue, allLinks, allowHost)
+	p = Producer(lock, imgQueue, todoLinks, allowHost)
 	p.setDaemon(True)
 	p.start()
 
 	#consumer
 	for i in range(20):
-		s = Consumer(lock, imgQueue)
+		s = Consumer(lock, imgQueue, todoLinks)
 		s.setDaemon(True)
 		s.start()
 
-	time.sleep(60)
+	time.sleep(40)
 
 
 if __name__ == '__main__':
