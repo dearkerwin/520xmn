@@ -4,13 +4,16 @@
 
 import MySQLdb
 class MySQLHelper:
-    def __init__(self,host,user,password,charset="utf8"):
+    def __init__(self,host,user,password,charset="utf8", unix_socket = ''):
         self.host=host
         self.user=user
         self.password=password
         self.charset=charset
         try:
-            self.conn=MySQLdb.connect(host=self.host,user=self.user,passwd=self.password)
+            if unix_socket != ''
+                self.conn=MySQLdb.connect(host=self.host,user=self.user,passwd=self.password, unix_socket=unix_socket)
+            else:
+                self.conn=MySQLdb.connect(host=self.host,user=self.user,passwd=self.password)
             self.conn.set_character_set(self.charset)
             self.cur=self.conn.cursor()
         except MySQLdb.Error as e:

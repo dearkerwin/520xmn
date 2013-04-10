@@ -5,6 +5,7 @@ if not "./lib" in sys.path:
 import MySQLHelper
 
 mysql =MySQLHelper.MySQLHelper('localhost','root','123456')
+# /tmp/mysql.sock
 mysql.selectDb('520xmn')
 insert_data = {
 	'src' : 'testseerc2e',
