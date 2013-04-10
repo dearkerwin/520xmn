@@ -4,7 +4,7 @@
 
 import MySQLdb
 class MySQLHelper:
-    def __init__(self,host,user,password,charset="utf8", unix_socket = ''):
+    def __init__(self,host,user,password,unix_socket = '', charset="utf8" ):
         self.host=host
         self.user=user
         self.password=password
