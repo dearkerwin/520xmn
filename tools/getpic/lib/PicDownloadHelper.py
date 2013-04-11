@@ -14,17 +14,38 @@ class PicDownloadHelper():
     def __init__(self,savePath, dbConfig):
         self.savePath=savePath
         self.dbConfig = dbConfig
-        self.mysqlHelper = self.get_db()
+        self.mysqlHelper = self.getDb()
         
 
 
-    def get_db():
+    def getDb(self):
         user = self.dbConfig['user']
-        pw = self.dbConfig['pw']
+        password = self.dbConfig['pw']
         host = self.dbConfig['host']
+        db = self.dbConfig['db']
         if self.dbConfig.has_key('unix_socket'):
             unix_socket = self.dbConfig['unix_socket']
-            mysqlHelper = MySQLHelper.MySQLHelper(host,user,password,unix_socket = unix_socket)
+            mysqlHelper = MySQLHelper.MySQLHelper(host,user,password,db=db, unix_socket = unix_socket)
         else :
-            mysqlHelper = MySQLHelper.MySQLHelper(host,user,password)
+            mysqlHelper = MySQLHelper.MySQLHelper(host,user,password,db=db)
         return mysqlHelper
+
+    def saveTag(self):
+        tag = 'tag1';
+        condition  = "name = '" + tag + "'"
+        table = 'term'
+        select = self.mysqlHelper.select(table, condition)
+
+        data = {"name":"tag1","type":"tag"}
+        # self.mysqlHelper.insert("term", data)
+
+
+  
+def test():
+    savePath = '/tmp'
+    dbConfig = { "user":"root","pw":"1234", "host":"localhost", "db":"520xmn"}
+    picDownload = PicDownloadHelper(savePath,dbConfig)
+    picDownload.saveTag()
+
+if __name__ == '__main__':
+    test()  

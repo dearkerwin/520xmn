@@ -4,18 +4,22 @@
 
 import MySQLdb
 class MySQLHelper:
-    def __init__(self,host,user,password,unix_socket = '', charset="utf8" ):
+    def __init__(self,host,user,password, db = '', unix_socket = '', charset="utf8", ):
         self.host=host
         self.user=user
         self.password=password
         self.charset=charset
         try:
-            if unix_socket != ''
+            if unix_socket != '':
                 self.conn=MySQLdb.connect(host=self.host,user=self.user,passwd=self.password, unix_socket=unix_socket)
             else:
                 self.conn=MySQLdb.connect(host=self.host,user=self.user,passwd=self.password)
             self.conn.set_character_set(self.charset)
             self.cur=self.conn.cursor()
+
+            if db != '':
+                self.selectDb(db)
+
         except MySQLdb.Error as e:
             print("Mysql Error %d: %s" % (e.args[0], e.args[1]))
 
@@ -29,7 +33,6 @@ class MySQLHelper:
     def query(self,sql):
         try:
            n=self.cur.execute(sql)
-           print sql
            return n
         except MySQLdb.Error as e:
            print("Mysql Error:%s\nSQL:%s" %(e,sql))
@@ -50,6 +53,11 @@ class MySQLHelper:
                  _d[desc[i][0]] = str(inv[i])
              d.append(_d)
         return d
+
+    def select(self, tablename, condition, key = '*'):
+        sql="select "+key+ " from "+ tablename+ " where "+ condition
+        ret = self.query(sql)
+        return ret
 
     def insert(self,p_table_name,p_data):
         for key in p_data:

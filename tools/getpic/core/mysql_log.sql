@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `host` (
 CREATE TABLE IF NOT EXISTS `term` (
   `id` int(11) NOT NULL auto_increment,
   `name` varchar(31) NOT NULL,
-  `type` enum('tag') NOT NULL,
+  `type` enum('tag') NOT NULL default 'tag',
   `created` timestamp NOT NULL default CURRENT_TIMESTAMP,
   PRIMARY KEY  (`id`),
   KEY `name_index` (`name`)
