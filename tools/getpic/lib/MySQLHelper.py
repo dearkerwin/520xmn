@@ -33,6 +33,7 @@ class MySQLHelper:
     def query(self,sql):
         try:
            n=self.cur.execute(sql)
+           print sql
            return n
         except MySQLdb.Error as e:
            print("Mysql Error:%s\nSQL:%s" %(e,sql))
@@ -54,12 +55,30 @@ class MySQLHelper:
              d.append(_d)
         return d
 
-    def select(self, tablename, condition, key = '*'):
-        sql="select "+key+ " from "+ tablename+ " where "+ condition
-        ret = self.query(sql)
+    def find(self, tablename, condition, fields= "*"):
+        field = self._getFields(fields)
+        condition = self._getConditions(condition)
+        sql="select "+field+ " from "+ tablename+ " where "+ condition + " limit 1"
+        ret = self.queryAll(sql)
+        if len(ret) > 0:
+            return ret[0]
+        else:
+            return ret
+
+    def findAll(self, tablename, condition, fields = "*"): 
+        field = self._getFields(fields)
+        condition = self._getConditions(condition)
+        sql="select "+field+ " from "+ tablename+ " where "+ condition
+        ret = self.queryAll(sql)
         return ret
 
-    def insert(self,p_table_name,p_data):
+    def count(self, tablename, condition):
+        condition = self._getConditions(condition)
+        sql="select count(*) as count from "+ tablename+ " where "+ condition 
+        ret = self.queryAll(sql)
+        return ret
+
+    def save(self,p_table_name,p_data):
         for key in p_data:
             p_data[key] = "'"+str(p_data[key])+"'"
         key   = ','.join(p_data.keys())
@@ -70,6 +89,30 @@ class MySQLHelper:
         self.commit()
         return ret
 
+    def _getFields(self, fields):
+        fieldString = ''
+        if isinstance(fields, ( str )):
+            fieldString = fields
+        elif isinstance(fields, ( list )):
+            fieldString = ','.join(fields) 
+
+        if fieldString == '':
+            fieldString = "*"
+        return fieldString
+
+    def _getConditions(self, conditions):
+        cString = ''
+        if isinstance(conditions, ( str )):
+            cString = conditions
+        elif isinstance(conditions, ( list,dict )):
+            con = []
+            for c in conditions:
+                con.append("`" + c + "` = '" + conditions[c] + "'") 
+            cString =' and '.join(con)
+
+        if cString == '':
+            cString = " 1 = 1"
+        return cString
 
     def getLastInsertId(self):
         return self.cur.lastrowid
