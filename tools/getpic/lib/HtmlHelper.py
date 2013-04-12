@@ -31,8 +31,10 @@ class HtmlHelper():
                 file.close()
             else :
                 print 'ingore : ' + fileName 
+            return True
         except IOError:
             print "download error!"+ url
+            return False
 
     """根据url获取文件名"""
     def gGetFileName(self,url):

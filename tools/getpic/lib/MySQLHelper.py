@@ -107,7 +107,7 @@ class MySQLHelper:
         elif isinstance(conditions, ( list,dict )):
             con = []
             for c in conditions:
-                con.append("`" + c + "` = '" + conditions[c] + "'") 
+                con.append("`" + str(c) + "` = '" + str(conditions[c]) + "'") 
             cString =' and '.join(con)
 
         if cString == '':
