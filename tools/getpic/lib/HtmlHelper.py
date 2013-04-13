@@ -18,7 +18,8 @@ class HtmlHelper():
 
     """根据url下载文件，文件名参数指定"""
     def gDownloadWithFilename(self,url,savePath,fileName):
-        #参数检查，现忽略
+        if savePath[ len(savePath) - 1 ] != '/':
+            savePath = savePath + "/"
         try:
             if not os.path.isfile(savePath + fileName) :
                 print 'download ' + fileName 

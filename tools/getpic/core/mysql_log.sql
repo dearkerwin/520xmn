@@ -9,6 +9,7 @@ CREATE  TABLE  IF NOT EXISTS `pic` (
   `path` VARCHAR(255) BINARY NOT NULL COMMENT '存放位置' ,
   `file_name` VARCHAR(255) CHARACTER SET 'utf8' COLLATE 'utf8_general_ci' NOT NULL COMMENT '图片名' ,
   `title` VARCHAR(255) CHARACTER SET 'utf8' COLLATE 'utf8_general_ci' NULL COMMENT 'title' ,
+  `postfix` VARCHAR(15) CHARACTER SET 'utf8' COLLATE 'utf8_general_ci' NULL COMMENT '后缀' ,
   `remark` VARCHAR(255) CHARACTER SET 'utf8' COLLATE 'utf8_general_ci' NULL COMMENT '备注' ,
   PRIMARY KEY (`id`) ,
   UNIQUE INDEX `src_UNIQUE` (`src` ASC) )

@@ -33,7 +33,7 @@ class MySQLHelper:
     def query(self,sql):
         try:
            n=self.cur.execute(sql)
-           print sql
+           # print sql
            return n
         except MySQLdb.Error as e:
            print("Mysql Error:%s\nSQL:%s" %(e,sql))

@@ -23,6 +23,7 @@ class GirlPareCn(UrlParser.UrlParser):
 			rex1 = r'''<a[^>]+?>([^<]+?)</a>'''
 			#从tag的html代码 中 获取真正的tag
 			t = re.findall(rex1, tag, re.S|re.I)
-			item = [src,t]
+			pic = {"src":src}
+			item = [pic,t]
 			items.append(item)
 		return items
