@@ -104,3 +104,14 @@ class UrlParser():
                 partUrl = partUrl + '/'
         return  partUrl + partLink
 
+
+def test():
+    url = "http://www.baidu.com"
+    html = '<body><a href="http://hi.baidu.com/217a007/item/45134fb6465150d484dd79c0" ></body>'
+    parser = UrlParser()
+    parser.feed(url,html)
+    links = parser.getLinks()
+    print links
+
+if __name__ == '__main__':
+    test()  
