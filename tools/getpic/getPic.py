@@ -3,7 +3,9 @@ import sys;
 if not "./lib" in sys.path:
     sys.path.append("./lib")
 if not "./page_rule" in sys.path:
-    sys.path.append("./page_rule")  
+    sys.path.append("./page_rule")
+if not "./core" in sys.path:
+    sys.path.append("./core")  
 
 import UrlParser
 import re
@@ -14,6 +16,11 @@ import PicDownloadHelper
 import time
 import threading
 
+
+try:
+    from mysql_setting import DBCONFIG
+except:
+    print "import dbConfig failure!"
 
 
 
@@ -118,10 +125,10 @@ class Consumer(threading.Thread):
 
 def test():
 	
-	dbConfig = { "user":"root","pw":"123456", "host":"localhost", "db":"520xmn"}
+
 	savePath = 'I:/kerwin_www/tmp'
 	beginLink = 'http://girl.pare.cn'
-	picHelper = PicDownloadHelper.PicDownloadHelper(savePath,dbConfig)
+	picHelper = PicDownloadHelper.PicDownloadHelper(savePath,DBCONFIG)
 
 
 	lock = threading.Condition()
