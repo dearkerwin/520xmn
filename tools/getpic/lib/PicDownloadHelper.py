@@ -91,6 +91,14 @@ class PicDownloadHelper():
         return check == len(tagIds)
 
 
+    """ 保存一个host"""
+    def saveHost(self, host):
+        data = {"host":host, "status":"disable"}
+        relation = self.mysqlHelper.find('host', data)
+        if len(relation) == 0:
+            #没有数据，进行保存
+            self.mysqlHelper.save('host', data)        
+
     """ 
         保存一个item 
         @param list item 一个包含pic 和 tag 的list
@@ -110,14 +118,14 @@ class PicDownloadHelper():
         tags = item[1]
 
         findPicData = {"src":pic['src']}
-        print "find :" + pic['src']
+        # print "find :" + pic['src']
         if self.getPicId(findPicData) > 0:
         #图片已经存在, 跳过
             print "break: " + pic['src']
             return 4;
         else:
 
-            print "save: " + pic['src']
+            # print "save: " + pic['src']
             #初始化 picData
             picData = {}.fromkeys(['src','path','file_name','title','remark','postfix'],'NULL')
             for p in pic:
@@ -170,6 +178,9 @@ def test():
     item = [pic,tag]
     ret = picDownload.saveItem(item)
     print ret
+
+
+
 
 if __name__ == '__main__':
     test()  

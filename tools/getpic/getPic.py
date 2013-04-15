@@ -27,7 +27,7 @@ except:
 
 class Producer(threading.Thread):
 
-	def __init__(self, lock, imgQueue, todoLinks, allowHost, maxSize = 100):
+	def __init__(self, lock, imgQueue, todoLinks, allowHost, picDownloadHelper, maxSize = 100):
 		self._lock = lock
 		threading.Thread.__init__(self)
 		self.imgQueue = imgQueue
@@ -35,6 +35,7 @@ class Producer(threading.Thread):
 		self.maxSize = maxSize
 		self.allowHost = allowHost
 		self.doneLinks = []  #记录已经出来过的links
+		self.picDownloadHelper = picDownloadHelper
 
 
 
@@ -70,26 +71,15 @@ class Producer(threading.Thread):
 							host = htmlHelpr.getHost(link)
 							if host not in self.allowHost:
 								##纪录log
+								self.picDownloadHelper.saveHost(host)
 								continue
-							# self.todoLinks.put(beginLink)	#dev
-							self.todoLinks.put(link)		#真实
+							else:
+								# self.todoLinks.put(beginLink)	#dev
+								self.todoLinks.put(link)		#真实
 					print "producer add todoLinks ---- size : "+ str(len(self.doneLinks) ) +"/" + str( self.todoLinks.qsize() + len(self.doneLinks) )
 					self._lock.notify()
 				self._lock.release()
 
-
-
-
-		# while True:
-		# 	if self._lock.acquire():
-		# 		if self.queue.qsize() >= self.maxSize:  #超过最大限制
-		# 			self._lock.wait()
-		# 		else:
-		# 			item = self.itemHelper.createItem()
-		# 			self.queue.put(item, 1)
-		# 			print 'producer ---- size :' + str(self.queue.qsize()) 
-		# 			self._lock.notify()
-		# 		self._lock.release()
 
 class Consumer(threading.Thread):
 
