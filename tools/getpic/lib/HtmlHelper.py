@@ -119,3 +119,14 @@ class HtmlHelper():
         if url=="" : return ""
         host = urlparse.urlsplit(url)[1]
         return host
+
+
+def test():
+    savePath='/tmp'
+    img = 'http://pic.pare.cn/p3/2013-04-01-16-13-59_j.jpg'  
+    htmlHelpr = HtmlHelper()
+    fileName = htmlHelpr.gGetPicName(img)
+    htmlHelpr.gDownloadWithFilename(img, savePath, fileName) #下载该图片
+    
+if __name__ == '__main__':
+    test()  
