@@ -1,0 +1,10 @@
+2013/04/23 12:57:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "yii".' in F:\www\520xmn\webapp\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\www\520xmn\webapp\framework\web\CWebApplication.php(141): CWebApplication->runController('yii')
+#1 F:\www\520xmn\webapp\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 F:\www\520xmn\webapp\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/520xmn/webapp/index.php?r=yii
+---
+2013/04/23 13:06:22 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'testdrive.pic' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `pic`.
+in F:\www\520xmn\webapp\index.php (13)

@@ -19,7 +19,7 @@ COMMENT = '存放图片记录';
 
 --
 -- 表的结构 `host`
---
+--  
 CREATE TABLE IF NOT EXISTS `host` (
   `id` int(11) NOT NULL auto_increment,
   `host` varchar(63) NOT NULL COMMENT 'host',

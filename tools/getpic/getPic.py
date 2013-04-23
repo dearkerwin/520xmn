@@ -132,7 +132,7 @@ def test():
 
 
 	#producer
-	p = Producer(lock, imgQueue, todoLinks, allowHost)
+	p = Producer(lock, imgQueue, todoLinks, allowHost, picHelper)
 	# p.setDaemon(True)
 	p.start()
 
