@@ -1,5 +1,5 @@
 <?php
-
+require_once("localRecord.php");
 /**
  * This is the model class for table "pic".
  *
@@ -58,6 +58,7 @@ class Pic extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			// 'tag'=>array(self::MANY_MANY, 'Term','pic_term_relation(pic_id, term_id)')
 		);
 	}
 
@@ -102,4 +103,55 @@ class Pic extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	public function getNewPic($page = 1, $per = 30) {
+		$config = array(
+			'select' => 'id,path,file_name,title',
+			'limit' => $per,
+			'order' => 'created DESC',
+			'offset' => ($page - 1) * $per,
+			// 'with' =>array('tag') 
+			
+		);
+		return $this->f($config);
+
+	}
+
+	public function getOnePic($id = 1) {
+		$config = array(
+			'select' => 'id,path,file_name,title,view_count',
+			'condition' => 'id=:picID',
+			'params' => array(':picID'=> $id),
+			'with' =>array('tag')	
+		);
+		return $this->f($config);
+	}
+
+	public function increasePicView($id ) {
+		$pic = $this->findByPk($id);
+		$pic->view_count ++;
+		$pic->save();
+	}
+
+	public function getHotPic( $page = 1, $per = 30) {
+		$config = array(
+			'select' => 'id,path,file_name,title',
+			'limit' => $per,
+			'order' => 'view_count DESC',
+			'offset' => ($page - 1) * $per,
+		);
+		return $this->f($config);
+	}
+
+	public function getTagPic( $tag, $page = 1) {
+
+	}
+
+	public function getRandPic( $page = 1 ) {
+
+	}
+
+
+
+	
 }

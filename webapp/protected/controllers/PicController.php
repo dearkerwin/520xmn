@@ -2,9 +2,15 @@
 
 class PicController extends Controller
 {
+	public $layout = 'pic';
 	public function actionIndex()
 	{
-		$this->render('index');
+
+		debug(Term::model()->getTagPic('吊带'));
+		$new_pics = Pic::model()->getNewPic(1);
+		$this->render('index',array(
+			'new_pics' => $new_pics,
+			));
 	}
 
 	// Uncomment the following methods and override them if needed

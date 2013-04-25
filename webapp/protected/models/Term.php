@@ -54,6 +54,8 @@ class Term extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'picture'=>array(self::MANY_MANY, 'Pic','pic_term_relation(term_id,pic_id)'
+				)
 		);
 	}
 
@@ -89,5 +91,15 @@ class Term extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+
+
+	public function getTagPic( $tag, $page= 1, $per = 30 ) {
+		$config = array(
+			'condition' => 'name=:tagName',
+			'params' => array(':tagName'=> $tag),
+			'with' =>array('picture'=>array('limit' => $per,'order' => 'picture.view_count desc','offset' => ($page - 1) * $per))	
+		);
+		return $this->f($config);
 	}
 }

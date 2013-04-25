@@ -1077,7 +1077,6 @@ class CJoinElement
 		$joinAlias=$schema->quoteTableName($this->relation->name.'_'.$this->tableAlias);
 		$parentCondition=array();
 		$childCondition=array();
-
 		$fkDefined=true;
 		foreach($fks as $i=>$fk)
 		{
