@@ -1,6 +1,7 @@
 $(function(){
 	initItem();
 	initPictureNew();
+	initPictureHot();
 	// initScroll();
 	initInfiniteScroll();
 	var $container = $('#masonny-div');

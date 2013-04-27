@@ -1884,12 +1884,13 @@ abstract class CActiveRecord extends CModel
 		if(empty($items)) return array();
 
 		$relations = array();
+
 		if( isset($find_config['with'])) {
-			if( is_array($find_config['with'])) {
-				$relations = array_keys($find_config['with']);
-			} else  {
+			// if( is_array($find_config['with'])) {
+			// 	$relations = array_keys($find_config['with']);
+			// } else  {
 				$relations = $find_config['with'];
-			}
+			// }
 		} 
 
 		foreach ($items as  $item) {

@@ -54,7 +54,8 @@ class Term extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'picture'=>array(self::MANY_MANY, 'Pic','pic_term_relation(term_id,pic_id)'
+			'picture'=>array(self::MANY_MANY, 'Pic','pic_term_relation(term_id,pic_id)',
+							'order' => 'picture.view_count desc'
 				)
 		);
 	}
@@ -94,12 +95,24 @@ class Term extends CActiveRecord
 	}
 
 
+	/** 
+	 *根据tag名称获取图片
+	 */
 	public function getTagPic( $tag, $page= 1, $per = 30 ) {
+		$pics = array();
 		$config = array(
 			'condition' => 'name=:tagName',
 			'params' => array(':tagName'=> $tag),
-			'with' =>array('picture'=>array('limit' => $per,'order' => 'picture.view_count desc','offset' => ($page - 1) * $per))	
 		);
-		return $this->f($config);
+		$tagModel  = $this->find($config);
+		if( !empty($tagModel) ) {
+			$picsModel = $tagModel->picture(array('limit' => $per,'offset' => ($page - 1) * $per));
+			if( !empty($picsModel)) {
+				foreach ($picsModel as  $value) {
+					$pics[] = $value->getAttributes();
+				}
+			}	
+		}	
+		return $pics;
 	}
 }

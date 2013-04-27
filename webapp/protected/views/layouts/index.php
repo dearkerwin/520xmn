@@ -44,6 +44,19 @@
 		</style>
     </head>
     <body>
-    	<?php echo $content;?>  
+    	<a id="home"></a><!--anchorLink: home -->	
+    	<?php echo $this->renderPartial('/layouts/header'); ?>  
+
+	
+		<?php echo $content;?>  
+
+		<?php echo $this->renderPartial('/layouts/footer'); ?>  
+
+		<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.js"></script>
+	  	<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.masonry.min.js"></script>
+		<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.colorbox.js"></script>
+		<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.infinitescroll.min.js"></script>
+		<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/masonry.js"></script>
     </body>
 </html>

@@ -58,7 +58,7 @@ class Pic extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			// 'tag'=>array(self::MANY_MANY, 'Term','pic_term_relation(pic_id, term_id)')
+			'tag'=>array(self::MANY_MANY, 'Term','pic_term_relation(pic_id, term_id)')
 		);
 	}
 
@@ -143,13 +143,21 @@ class Pic extends CActiveRecord
 		return $this->f($config);
 	}
 
-	public function getTagPic( $tag, $page = 1) {
 
+	public function getRandPic( $per = 30 ) {
+		$count = $this->count();
+		$numbers = range(1, $count); 
+		$result = array_rand($numbers, $per); 
+		$in_string = "(".join(",",$result).")";
+		$config = array(
+			'select' => 'id,path,file_name,title,view_count',
+			'condition' => 'id in '.$in_string,	
+		);
+		return $this->f($config);
 	}
 
-	public function getRandPic( $page = 1 ) {
 
-	}
+
 
 
 
