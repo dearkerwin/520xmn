@@ -14,6 +14,7 @@ author kerwin
 """
 import urllib, httplib, urlparse
 import os
+import Image
 class HtmlHelper():
 
     """根据url下载文件，文件名参数指定"""
@@ -43,6 +44,14 @@ class HtmlHelper():
         if url=="" : return ""
         arr=url.split("/")
         return arr[len(arr)-1]
+
+    """ 获取图片的尺寸"""
+    def getImageSize(self, path, file_name):
+        if path[ len(path) - 1 ] != '/':
+            path = path + "/"
+        imagePath = path + file_name
+        im = Image.open(imagePath)
+        return im.size
 
     """根据url获取图片名"""
     def gGetPicName(self,url):
@@ -127,6 +136,7 @@ def test():
     htmlHelpr = HtmlHelper()
     fileName = htmlHelpr.gGetPicName(img)
     htmlHelpr.gDownloadWithFilename(img, savePath, fileName) #下载该图片
+
     
 if __name__ == '__main__':
     test()  

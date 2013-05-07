@@ -113,7 +113,7 @@ class Consumer(threading.Thread):
 
 
 
-def test():
+def main():
 	
 
 	savePath = 'I:/kerwin_www/tmp'
@@ -146,4 +146,4 @@ def test():
 
 
 if __name__ == '__main__':
-	test()
+	main()

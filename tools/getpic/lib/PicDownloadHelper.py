@@ -9,6 +9,7 @@ author kerwin
 import MySQLHelper
 import HtmlHelper
 
+
 class PicDownloadHelper():
 
     def __init__(self,savePath, dbConfig):
@@ -127,7 +128,7 @@ class PicDownloadHelper():
 
             # print "save: " + pic['src']
             #初始化 picData
-            picData = {}.fromkeys(['src','path','file_name','title','remark','postfix'],'NULL')
+            picData = {}.fromkeys(['src','path','file_name','title','remark','postfix','width','height'],'NULL')
             for p in pic:
                 picData[p] = pic[p]
 
@@ -144,6 +145,9 @@ class PicDownloadHelper():
         
             #准备保存图片
             if self.htmlHelper.gDownloadWithFilename(picData['src'],picData['path'],picData['file_name']):
+                size = self.htmlHelper.getImageSize(picData['path'],picData['file_name'])
+                picData['width'] = size[0]
+                picData['height'] = size[1]
                 #准备保存pic数据到数据库
                 picId = self.savePic(picData)
                 if picId > 0 :
@@ -173,7 +177,7 @@ def test():
     savePath = 'I:/kerwin_www/tmp'
     dbConfig = { "user":"root","pw":"123456", "host":"localhost", "db":"520xmn"}
     picDownload = PicDownloadHelper(savePath,dbConfig)
-    pic = {'src':"http://pic.pare.cn/p3/2013-04-12-11-05-38_fw580"}
+    pic = {'src':"http://pic.pare.cn/p3/d2013-04-24-17-40-39_4.jpg"}
     tag = ['床','情节','手手','清纯','OL']
     item = [pic,tag]
     ret = picDownload.saveItem(item)

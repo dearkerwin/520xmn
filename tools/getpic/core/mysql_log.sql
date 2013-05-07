@@ -10,6 +10,8 @@ CREATE  TABLE  IF NOT EXISTS `pic` (
   `file_name` VARCHAR(255) CHARACTER SET 'utf8' COLLATE 'utf8_general_ci' NOT NULL COMMENT '图片名' ,
   `title` VARCHAR(255) CHARACTER SET 'utf8' COLLATE 'utf8_general_ci' NULL COMMENT 'title' ,
   `postfix` VARCHAR(15) CHARACTER SET 'utf8' COLLATE 'utf8_general_ci' NULL COMMENT '后缀' ,
+  `width` SMALLINT NOT NULL DEFAULT 0 COMMENT '宽度' ,
+  `height` SMALLINT NOT NULL DEFAULT 0 COMMENT '长度' ,
   `remark` VARCHAR(255) CHARACTER SET 'utf8' COLLATE 'utf8_general_ci' NULL COMMENT '备注' ,
   PRIMARY KEY (`id`) ,
   UNIQUE INDEX `src_UNIQUE` (`src` ASC) )
