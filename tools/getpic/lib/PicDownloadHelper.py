@@ -122,7 +122,7 @@ class PicDownloadHelper():
         # print "find :" + pic['src']
         if self.getPicId(findPicData) > 0:
         #图片已经存在, 跳过
-            print "break: " + pic['src']
+            # print "break: " + pic['src']
             return 4;
         else:
 
