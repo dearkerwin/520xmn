@@ -22,16 +22,18 @@ class PicHelper():
 		生成指定宽度的图片，保持原来的长宽比
 	"""
 	def createWidthThumb( self, file_path, img_name, save_path, width, quality=85):
-		print file_path + img_name
-		im = Image.open( file_path + img_name)
-		im_w, im_h = im.size
-		if im_w <= width:
-			return
+		try:
+			im = Image.open( file_path + img_name)
+			im_w, im_h = im.size
+			if im_w <= width:
+				return
+			height = int((float(im_h)/im_w)* width)
+			size = width, height
+			im.thumbnail(size)
+			im.save(save_path + img_name, quality=quality)
 
-		height = int((float(im_h)/im_w)* width)
-		size = width, height
-		im.thumbnail(size)
-		im.save(save_path + img_name, quality=quality)
+		except IOError:
+			print "cannot create thumbnail for " + file_path + img_name
 		
 
 	""" 
