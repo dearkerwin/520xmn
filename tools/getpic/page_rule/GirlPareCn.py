@@ -18,7 +18,7 @@ class GirlPareCn(UrlParser.UrlParser):
 		url = re.findall(rex, self.data, re.S|re.I)
 		items = []
 		for u in url:
-			src = u[0]
+			src = self.gGetAbslLink(u[0])
 			tag = u[1]
 			rex1 = r'''<a[^>]+?>([^<]+?)</a>'''
 			#从tag的html代码 中 获取真正的tag

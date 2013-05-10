@@ -45,13 +45,6 @@ class HtmlHelper():
         arr=url.split("/")
         return arr[len(arr)-1]
 
-    """ 获取图片的尺寸"""
-    def getImageSize(self, path, file_name):
-        if path[ len(path) - 1 ] != '/':
-            path = path + "/"
-        imagePath = path + file_name
-        im = Image.open(imagePath)
-        return im.size
 
     """根据url获取图片名"""
     def gGetPicName(self,url):

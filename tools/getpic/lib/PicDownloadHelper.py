@@ -8,16 +8,37 @@ author kerwin
 """
 import MySQLHelper
 import HtmlHelper
+import PicHelper
+import os, time
 
 
 class PicDownloadHelper():
 
-    def __init__(self,savePath, dbConfig):
-        self.savePath=savePath
+    def __init__(self,savePath,thumbPath, dbConfig):
+        self.savePath = savePath + self.getChildPath( savePath )
+        self.thumbPath = thumbPath + self.getChildPath( thumbPath )
+        self.childPath = self.getChildPath( savePath )  #用于保存的子目录名
         self.dbConfig = dbConfig
         self.mysqlHelper = self.getDb()
         self.htmlHelper = HtmlHelper.HtmlHelper()
+        self.picHelper = PicHelper.PicHelper()
+        
         # lock = threading.Condition()
+
+    """ 根据当前的时间，返回一个用于保存图片的子目录，如果不存在，则创建"""
+    def getChildPath (self, save_path):
+        year = time.localtime()[0]
+        month = time.localtime()[1]
+        path =  str(year) + "/" + str(month) + "/"
+        year_path = save_path + str(year) + "/"
+        month_path = save_path + str(year) + "/" + str(month) + "/"
+
+        if not os.path.isdir( year_path ):
+            os.mkdir(year_path)
+        if not os.path.isdir( month_path ):
+            os.mkdir(month_path)
+        return path
+
 
     """ 获取一个数据库操作类"""
     def getDb(self):
@@ -134,21 +155,24 @@ class PicDownloadHelper():
 
             #获取file_name 和 postfix
             picData['file_name'] = self.htmlHelper.gGetPicName( pic["src"])
-            picData['path'] = self.savePath
-            arr=picData['file_name'].split(".")
-            picData['postfix'] = arr[len(arr)-1]
+            picData['path'] = self.childPath
+            picData['postfix'] = os.path.splitext(picData['file_name'])[1]
 
-            if(picData['postfix'] == 'gif'): 
+            print os.path.splitext(picData['file_name'])
+            return
+
+            if(picData['postfix'] == '.gif'): 
                 print "ignore gif "
                 return 0;
 
         
             #准备保存图片
-            if self.htmlHelper.gDownloadWithFilename(picData['src'],picData['path'],picData['file_name']):
-                size = self.htmlHelper.getImageSize(picData['path'],picData['file_name'])
-                picData['width'] = size[0]
-                picData['height'] = size[1]
+            if self.htmlHelper.gDownloadWithFilename(picData['src'], self.savePath, picData['file_name']):
+                #生成宽度=260 缩略图
+                self.picHelper.createWidthThumb(self.savePath, picData['file_name'], self.thumbPath, 260)
+                
                 #准备保存pic数据到数据库
+                picData['width'],  picData['height'] = self.picHelper.getImageSize(self.savePath,picData['file_name'])
                 picId = self.savePic(picData)
                 if picId > 0 :
                     #图片保存成功，保存标签

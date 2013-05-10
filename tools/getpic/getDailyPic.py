@@ -23,8 +23,8 @@ except:
     print "import dbConfig failure!"
 
 
-def getPicByUrl( url, savePath ):
-	picHelper = PicDownloadHelper.PicDownloadHelper(savePath,DBCONFIG)
+def getPicByUrl( url, savePath, thumbPath ):
+	picHelper = PicDownloadHelper.PicDownloadHelper(savePath,thumbPath,DBCONFIG)
 	parser = GirlPareCn.GirlPareCn()
 	htmlHelpr = HtmlHelper.HtmlHelper()
 	print "begin : [" + url + "]"
@@ -37,14 +37,19 @@ def getPicByUrl( url, savePath ):
 
 			
 def main():
-	savePath = 'I:/kerwin_www/tmp'
-	url  = "http://girl.pare.cn"
+	from config import savePath
+	from config import thumbPath
+	# savePath = 'I:/kerwin_www/tmp'
+	# thumbPath = 'I:/kerwin_www/tmp'
+
+	# url  = "http://girl.pare.cn"
+	url  = "http://localhost/tmp/pic.htm"
 	pageBaseUrl = "http://girl.pare.cn/page/"
 
-	getPicByUrl( url, savePath )
+	getPicByUrl( url, savePath , thumbPath)
 	for i in range(2, 6):
 		url = pageBaseUrl + str(i);
-		getPicByUrl( url, savePath)
+		# getPicByUrl( url, savePath)
 	
 
 if __name__ == '__main__':

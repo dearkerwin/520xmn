@@ -134,10 +134,12 @@ class Consumer(threading.Thread):
 
 def main():
 	
-
-	savePath = 'I:/kerwin_www/tmp'
+	from config import savePath
+	from config import thumbPath
+	# savePath = 'I:/kerwin_www/tmp'
+	# thumbPath = 'I:/kerwin_www/tmp'
 	beginLink = 'http://girl.pare.cn'
-	picHelper = PicDownloadHelper.PicDownloadHelper(savePath,DBCONFIG)
+	picHelper = PicDownloadHelper.PicDownloadHelper(savePath,thumbPath,DBCONFIG)
 
 
 	lock = threading.Condition()
