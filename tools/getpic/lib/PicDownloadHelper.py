@@ -158,9 +158,6 @@ class PicDownloadHelper():
             picData['path'] = self.childPath
             picData['postfix'] = os.path.splitext(picData['file_name'])[1]
 
-            print os.path.splitext(picData['file_name'])
-            return
-
             if(picData['postfix'] == '.gif'): 
                 print "ignore gif "
                 return 0;
