@@ -42,14 +42,13 @@ def main():
 	# savePath = 'I:/kerwin_www/tmp'
 	# thumbPath = 'I:/kerwin_www/tmp'
 
-	# url  = "http://girl.pare.cn"
-	url  = "http://localhost/tmp/pic.htm"
+	url  = "http://girl.pare.cn"
 	pageBaseUrl = "http://girl.pare.cn/page/"
 
 	getPicByUrl( url, savePath , thumbPath)
 	for i in range(2, 6):
 		url = pageBaseUrl + str(i);
-		# getPicByUrl( url, savePath)
+		getPicByUrl( url, savePath, thumbPath)
 	
 
 if __name__ == '__main__':

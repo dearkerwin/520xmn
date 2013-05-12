@@ -153,7 +153,7 @@ def main():
 
 
 	#producer
-	p = Producer(lock, imgQueue, todoLinks, allowHost, picHelper, allowLinkSize = 14)
+	p = Producer(lock, imgQueue, todoLinks, allowHost, picHelper, allowLinkSize = 30)
 	# p.setDaemon(True)
 	p.start()
 

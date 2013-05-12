@@ -31,9 +31,11 @@ class PicHelper():
 			size = width, height
 			im.thumbnail(size)
 			im.save(save_path + img_name, quality=quality)
+			return True
 
 		except IOError:
 			print "cannot create thumbnail for " + file_path + img_name
+			return False
 		
 
 	""" 
@@ -72,8 +74,6 @@ def main():
 	save_path = "F:/www/pic/thumb/"
 	picHelper.createWidthThumb(file_path, img_name, save_path,  260 )
 	
-	print(os.path.splitext(file_path + img_name))
-
 
 if __name__ == '__main__':
 	main()

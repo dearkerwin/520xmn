@@ -166,7 +166,8 @@ class PicDownloadHelper():
             #准备保存图片
             if self.htmlHelper.gDownloadWithFilename(picData['src'], self.savePath, picData['file_name']):
                 #生成宽度=260 缩略图
-                self.picHelper.createWidthThumb(self.savePath, picData['file_name'], self.thumbPath, 260)
+                if not self.picHelper.createWidthThumb(self.savePath, picData['file_name'], self.thumbPath, 260):
+                    return 0;
                 
                 #准备保存pic数据到数据库
                 picData['width'],  picData['height'] = self.picHelper.getImageSize(self.savePath,picData['file_name'])
