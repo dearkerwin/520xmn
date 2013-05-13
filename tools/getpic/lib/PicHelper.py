@@ -29,8 +29,10 @@ class PicHelper():
 				return
 			height = int((float(im_h)/im_w)* width)
 			size = width, height
-			im.thumbnail(size)
-			im.save(save_path + img_name, quality=quality)
+			im = im.resize(size, Image.ANTIALIAS)
+			# im.thumbnail(size)
+			# im.save(path, 'JPEG', quality = 95)
+			im.save(save_path + img_name,'JPEG', quality=quality)
 			return True
 
 		except IOError:
