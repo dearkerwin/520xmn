@@ -44,7 +44,7 @@ class Producer(threading.Thread):
 		self.maxImgQueueSize = maxImgQueueSize
 		self.allowLinkSize = allowLinkSize
 		self.allowHost = allowHost
-		self.doneLinks = []  #记录已经出来过的links
+		self.allLinks = []  #记录已经所有的links
 		self.picDownloadHelper = picDownloadHelper
 
 
@@ -60,7 +60,7 @@ class Producer(threading.Thread):
 			if self._lock.acquire():
 				beginLink = self.todoLinks.get()
 				print "parse : [" + beginLink + "]"
-				self.doneLinks.append(beginLink)
+				# self.allLinks.append(beginLink)
 				html = htmlHelpr.gGetHtml(beginLink)
 				parser.feed(beginLink,html)
 
@@ -76,10 +76,10 @@ class Producer(threading.Thread):
 
 
 					# add link to todoLinks
-					if  self.todoLinks.qsize() + len(self.doneLinks) <= self.allowLinkSize:
+					if  self.todoLinks.qsize() + len(self.allLinks) <= self.allowLinkSize:
 						links = parser.getLinks()
 						for link in links:
-							if link[-4:] != 'html' and link not in self.doneLinks:
+							if link[-4:] != 'html' and link not in self.allLinks :
 								host = htmlHelpr.getHost(link)
 								if host not in self.allowHost:
 									##纪录log
@@ -87,10 +87,11 @@ class Producer(threading.Thread):
 									continue
 								else:
 									
-									if self.todoLinks.qsize() + len(self.doneLinks) <= self.allowLinkSize:
-										self.todoLinks.put(link)		#真实
+									if  len(self.allLinks) <= self.allowLinkSize:
+										self.todoLinks.put(link)
+										self.allLinks.append(link)		#真实
 										# self.todoLinks.put(beginLink)	#dev
-					print "producer add todoLinks ---- size : "+ str(len(self.doneLinks) ) +"/" + str( self.todoLinks.qsize() + len(self.doneLinks) )
+					print "producer add --todoLinks size : "+  str( self.todoLinks.qsize() ) + "--alllink size:" + str(len(self.allLinks))
 					self._lock.notify()
 				self._lock.release()
 
@@ -153,7 +154,7 @@ def main():
 
 
 	#producer
-	p = Producer(lock, imgQueue, todoLinks, allowHost, picHelper, allowLinkSize = 30)
+	p = Producer(lock, imgQueue, todoLinks, allowHost, picHelper, allowLinkSize = 1000)
 	# p.setDaemon(True)
 	p.start()
 
