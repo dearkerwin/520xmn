@@ -163,3 +163,4 @@ pip-log.txt
 .DS_Store
 /tools/getpic/core/mysql_setting.py
 /webapp/protected/config/main.php
+/webapp/protected/runtime/*.log
