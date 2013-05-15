@@ -1874,8 +1874,8 @@ abstract class CActiveRecord extends CModel
 	 */
 	protected function f( $config = array()) {
 		$default_config = array(
-			'limit' => 30,
-			'order' => 'id DESC',
+			// 'limit' => 30,
+			// 'order' => 'id DESC',
 		);
 
 		$find_config = array_merge( $default_config, $config);
@@ -1891,7 +1891,7 @@ abstract class CActiveRecord extends CModel
 			// } else  {
 				$relations = $find_config['with'];
 			// }
-		} 
+		}
 
 		foreach ($items as  $item) {
 			$atts = $item->getAttributes();
@@ -1912,11 +1912,16 @@ abstract class CActiveRecord extends CModel
 		$rel_return = array();
 		foreach ($relations as $rel) {
 			$rel_obj = $item->$rel;
-			$rel_values = array();
+			$rel_values = '';
 			if(!empty($rel_obj)) {
-				foreach ($rel_obj as  $rel_obj_single) {
-					$rel_values[] = $rel_obj_single->getAttributes();
+				if(is_array($rel_obj)) {
+					foreach ($rel_obj as  $rel_obj_single) {
+						$rel_values[] = $rel_obj_single->getAttributes();
+					}
+				} else {
+					$rel_values = $rel_obj;
 				}
+				
 			}
 			$rel_return[$rel] = $rel_values;
 		}

@@ -62,7 +62,7 @@ h3 {
 .title{
   border-left: 5px solid #E8881C;
   padding: 0px 1px 1px 10px;
-  margin: 60px 0 25px 0;
+  margin: 30px 0 25px 0;
 }
 .more{
   /*line-height: 14px;*/
@@ -312,6 +312,26 @@ h3 {
   max-height: 550px;
 }
 
+/* ============ masonny-div ============== */
+.item {
+  width: 220px;
+  margin: 10px;
+  float: left;
+}
+#masonny-div{
+ /* width: 95%;*/
+}
+.span2-height{
+  height: 265px;
+  overflow: hidden;
+}
+.span3-height{
+  height: 410px;
+  overflow: hidden;
+}
+
+
+
 /* ===== @about ===== */
 
 .about-pattern {
@@ -341,22 +361,7 @@ h3 {
 .profile i {
   padding-right: 5px;
 }
-.item {
-  width: 220px;
-  margin: 10px;
-  float: left;
-}
-#masonny-div{
-  width: 95%;
-}
-.span2-height{
-  height: 265px;
-  overflow: hidden;
-}
-.span3-height{
-  height: 410px;
-  overflow: hidden;
-}
+
 
 
 
@@ -604,6 +609,75 @@ p.copyright {
   padding-right: 15px;
 }  
 
+/* ============ Infinite Scroll loader ============ */
+#infscr-loading { 
+  text-align: center;
+  z-index: 100;
+  position: fixed;
+  left: 45%;
+  bottom: 40px;
+  width: 200px;
+  padding: 10px;
+  background: #000; 
+  opacity: 0.8;
+  color: #FFF;
+  -webkit-border-radius: 10px;
+     -moz-border-radius: 10px;
+          border-radius: 10px;
+}
+
+
+
+
+/* ============ jqcloud ============  */
+
+div.jqcloud {
+  font-family: "Helvetica", "Arial", sans-serif;
+  font-size: 10px;
+  line-height: normal;
+}
+
+div.jqcloud a {
+  font-size: inherit;
+  text-decoration: none;
+}
+
+div.jqcloud span.w10 { font-size: 550%; }
+div.jqcloud span.w9 { font-size: 500%; }
+div.jqcloud span.w8 { font-size: 450%; }
+div.jqcloud span.w7 { font-size: 400%; }
+div.jqcloud span.w6 { font-size: 350%; }
+div.jqcloud span.w5 { font-size: 300%; }
+div.jqcloud span.w4 { font-size: 250%; }
+div.jqcloud span.w3 { font-size: 225%; }
+div.jqcloud span.w2 { font-size: 200%; }
+div.jqcloud span.w1 { font-size: 175%; }
+
+div.jqcloud { color: #09f; }
+div.jqcloud a { color: inherit; }
+div.jqcloud a:hover { color: #E41; }
+div.jqcloud a:hover { color: #E41; }
+div.jqcloud span.w10 { color: #CB2; }
+div.jqcloud span.w9 { color: #B72; }
+div.jqcloud span.w8 { color: #B72; }
+div.jqcloud span.w7 { color: #975; }
+div.jqcloud span.w6 { color: #ECDB5A; }
+div.jqcloud span.w5 { color: #E4CD25; }
+div.jqcloud span.w4 { color: #E4CD24; }
+div.jqcloud span.w3 { color: #F0A83D; }
+div.jqcloud span.w2 { color: #B72; }
+div.jqcloud span.w1 { color: #F83; }
+
+/* layout */
+
+div.jqcloud {
+  overflow: hidden;
+  position: relative;
+}
+
+div.jqcloud span { padding: 0; }
+
+
 
 /* ===== @Tablets to Phones ===== */
 
@@ -672,4 +746,8 @@ body{
 
 }
 
+
+
 }
+
+

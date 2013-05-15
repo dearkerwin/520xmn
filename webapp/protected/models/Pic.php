@@ -110,7 +110,7 @@ class Pic extends CActiveRecord
 			'limit' => $per,
 			'order' => 'created DESC',
 			'offset' => ($page - 1) * $per,
-			// 'with' =>array('tag') 
+			'with' =>array('tag') 
 			
 		);
 		return $this->f($config);
@@ -119,8 +119,8 @@ class Pic extends CActiveRecord
 
 	public function getOnePic($id = 1) {
 		$config = array(
-			'select' => 'id,path,file_name,title,view_count',
-			'condition' => 'id=:picID',
+			'select' => 'id,path,file_name,title,view_count,width,height',
+			'condition' => "t.id=$id",
 			'params' => array(':picID'=> $id),
 			'with' =>array('tag')	
 		);

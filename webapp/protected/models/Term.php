@@ -56,7 +56,8 @@ class Term extends CActiveRecord
 		return array(
 			'picture'=>array(self::MANY_MANY, 'Pic','pic_term_relation(term_id,pic_id)',
 							'order' => 'picture.view_count desc'
-				)
+				),
+			'tag_count' =>array(self::STAT, 'PicTermRelation', 'term_id','select'=>'count(term_id)')
 		);
 	}
 
@@ -114,5 +115,21 @@ class Term extends CActiveRecord
 			}	
 		}	
 		return $pics;
+	}
+
+	/**
+	 * 获取所有标签 的图片数
+	 */
+	public function getTagCount() {
+		$config = array(
+			'select' => 'id, name',
+			'with' => array('tag_count')
+		);
+		$tags = $this->f($config);
+		$tagsCount = array();
+		foreach ($tags as $key => $value) {
+			$tagsCount[$value['name']] =  $value['Relations']['tag_count'];
+		}
+		return $tagsCount;
 	}
 }

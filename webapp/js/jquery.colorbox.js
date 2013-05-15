@@ -610,7 +610,10 @@
 		}
 
 		css = {width: settings.w + loadedWidth + interfaceWidth, height: settings.h + loadedHeight + interfaceHeight, top: top, left: left};
-
+console.log(css);
+console.log("settings.w = "  +settings.w);
+console.log("loadedWidth = "  +loadedWidth);
+console.log("interfaceWidth = " +interfaceWidth);
 		if(speed===0){ // temporary workaround to side-step jQuery-UI 1.8 bug (http://bugs.jquery.com/ticket/12273)
 			$box.css(css);
 		}
@@ -683,6 +686,7 @@
 		function getWidth() {
 			settings.w = settings.w || $loaded.width();
 			settings.w = settings.mw && settings.mw < settings.w ? settings.mw : settings.w;
+			console.log( settings.w);
 			return settings.w;
 		}
 		function getHeight() {

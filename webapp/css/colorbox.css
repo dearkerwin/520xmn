@@ -21,10 +21,10 @@
 */
 #cboxOverlay{background:#000;}
 #colorbox{outline:0;}
-#cboxContent{margin-top:20px;background:#000;}
-.cboxIframe{background:#fff;}
+#cboxContent{margin-top:20px;background-color: rgba(0, 0, 0, 0.3);}
+.cboxIframe{background-color: rgba(0, 0, 0, 0.3);}
 #cboxError{padding:50px; border:1px solid #ccc;}
-#cboxLoadedContent{border:5px solid #000; background:#fff;}
+#cboxLoadedContent{border:5px solid #000; background-color: rgba(0, 0, 0, 0.3);}
 #cboxTitle{position:absolute; top:-20px; left:0; color:#ccc;}
 #cboxCurrent{position:absolute; top:-20px; right:0px; color:#ccc;}
 #cboxLoadingGraphic{background:url(../images/loading-colorbox.gif) no-repeat center center;}
@@ -36,9 +36,11 @@
 #cboxPrevious:active, #cboxNext:active, #cboxSlideshow:active, #cboxClose:active {outline:0;}
 
 #cboxSlideshow{position:absolute; top:-20px; right:90px; color:#fff;}
-#cboxPrevious{position:absolute; top:50%; left:5px; margin-top:-32px; background:url(../images/controls.png) no-repeat top left; width:28px; height:65px; text-indent:-9999px;}
-#cboxPrevious:hover{background-position:bottom left;}
-#cboxNext{position:absolute; top:50%; right:5px; margin-top:-32px; background:url(../images/controls.png) no-repeat top right; width:28px; height:65px; text-indent:-9999px;}
-#cboxNext:hover{background-position:bottom right;}
+/*#cboxPrevious{position:absolute; top:50%; left:5px; margin-top:-32px; background:url(../images/controls.png) no-repeat top left; width:28px; height:65px; text-indent:-9999px;}*/
+#cboxPrevious{opacity:0.6;position:fixed; top:50%; left:5%; background:url(../images/right.png) no-repeat top left; text-indent:-9999px;width:102px; height:102px;}
+#cboxPrevious:hover{opacity:1;}
+/*#cboxNext{position:absolute; top:50%; right:5px; margin-top:-32px; background:url(../images/controls.png) no-repeat top right; width:28px; height:65px; text-indent:-9999px;}*/
+#cboxNext{opacity:0.6; position:fixed; top:50%; right:5%;background:url(../images/left.png) no-repeat top right; text-indent:-9999px;width:102px; height:102px;}
+#cboxNext:hover{opacity:1;}
 #cboxClose{position:absolute; top:5px; right:5px; display:block; background:url(../images/controls.png) no-repeat top center; width:38px; height:19px; text-indent:-9999px;}
 #cboxClose:hover{background-position:bottom center;}

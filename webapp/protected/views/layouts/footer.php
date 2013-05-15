@@ -87,3 +87,4 @@
 			</div><!--end: Container -->
 		</div>
 	</footer>
+	<script type="text/javascript" > var BASE_PATH= "<?php echo Yii::app()->request->baseUrl;?>/";</script>
