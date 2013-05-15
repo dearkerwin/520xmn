@@ -13,7 +13,7 @@ import HtmlHelper
 import Queue  
 import GirlPareCn
 import PicDownloadHelper
-import time
+import datetime
 import threading
 
 
@@ -41,14 +41,15 @@ def main():
 	from config import thumbPath
 	# savePath = 'I:/kerwin_www/tmp'
 	# thumbPath = 'I:/kerwin_www/tmp'
-
+	print "begin-----"+ str(datetime.date.today())
 	url  = "http://girl.pare.cn"
 	pageBaseUrl = "http://girl.pare.cn/page/"
 
 	getPicByUrl( url, savePath , thumbPath)
-	for i in range(2, 6):
+	for i in range(2, 3):
 		url = pageBaseUrl + str(i);
 		getPicByUrl( url, savePath, thumbPath)
+	print "end-----"+str(datetime.date.today())
 	
 
 if __name__ == '__main__':
