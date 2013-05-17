@@ -9,9 +9,9 @@
 
 		<!-- start: Meta -->
 		<meta charset="utf-8">
-		<title>Motion - Single Page Responsive portofolio at Bootstrap </title> 
-		<meta content="Single Page Responsive portofolio at Bootstrap" name="description">
-		<meta content="dark, responsive, portofolio, single page" name="keywords">
+		<title>520小美女 520xmn.com</title> 
+		<meta content="一个只有美女图片的网站" name="description">
+		<meta content="美女 图片 胸 腿" name="keywords">
 		<!-- end: Meta -->
 		
 		<!-- start: Mobile Specific -->
@@ -23,7 +23,6 @@
 	    <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrap-responsive.css">
 	    <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/font-awesome.css">
 	    <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/style.css">
-<!-- 	    <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/jqcloud.css"> -->
 	    <link media="screen" rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/colorbox.css" />
 	    <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery-1.7.1.min.js"></script>
 		<!-- end: CSS -->
@@ -48,9 +47,10 @@
 		
 	  	<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.masonry.min.js"></script>
-		<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.colorbox.js"></script>
+		<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.colorbox.min.js"></script>
 		<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.infinitescroll.min.js"></script>
-		<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/masonry.js"></script>
 		<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jqcloud-1.0.3.min.js"></script>
+		<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.scrollUp.min.js"></script>
+		<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/all.js"></script>
     </body>
 </html>

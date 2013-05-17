@@ -7,11 +7,10 @@ class PicController extends Controller
 	public function actionIndex()
 	{
 		$this->render('index',array(
-				// 'new_pics' => Pic::model()->getNewPic(4,12),
-				'new_pics' => Term::model()->getTagPic("小清新",1,12),
-				'hot_pics' => Pic::model()->getHotPic(1,8),
+				'new_pics' => Pic::model()->getNewPic(1,12, "height > width"),
+				// 'new_pics' => Term::model()->getTagPic("小清新",1,12),
+				'hot_pics' => Pic::model()->getHotPic(1,8, "height > width"),
 				'rand_pics' => Pic::model()->getRandPic(),
-				// 'tags' => json_encode($tags)
 
 			));
 	}

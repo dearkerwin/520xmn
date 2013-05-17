@@ -70,9 +70,14 @@
 		<div class="row">
 			<!--start: image grid -->
 			<div id="masonny-div" >
-					 <?php foreach ($rand_pics as  $pic): ?>
-					<a  class='item' href="<?php echo Yii::app()->createUrl("Pic/one",array("id"=>$pic['id']));?>"><img src="<?php echo  PIC_THUMB_ROOT.$pic['path'].$pic['file_name'];?>"/></a>
-					<?php endforeach; ?>
+				<?php 
+					foreach ($rand_pics as  $pic): 
+						$height = (int)(($pic['height'] /$pic['width']) * 220);
+				?>
+					<a  class='item' href="<?php echo Yii::app()->createUrl("Pic/one",array("id"=>$pic['id']));?>">
+						<img src="<?php echo  PIC_THUMB_ROOT.$pic['path'].$pic['file_name'];?>" style=" height:<?php echo $height;?>px" />
+					</a>
+				<?php endforeach; ?>
 			</div>
 			<!-- end: image grid -->
 			<div id="next" ><a href="<?php echo Yii::app()->createUrl("Pic/randpage",array("page"=>2));?>">下一页</a></div>

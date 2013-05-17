@@ -104,10 +104,12 @@ class Pic extends CActiveRecord
 		));
 	}
 
-	public function getNewPic($page = 1, $per = 30) {
+	public function getNewPic($page = 1, $per = 30, $condition = null) {
+		if (empty($condition)) $condition = "1=1";
 		$config = array(
-			'select' => 'id,path,file_name,title',
+			'select' => 'id,path,file_name,title,width,height',
 			'limit' => $per,
+			'condition' => $condition ,
 			'order' => 'created DESC',
 			'offset' => ($page - 1) * $per,
 			'with' =>array('tag') 
@@ -133,10 +135,12 @@ class Pic extends CActiveRecord
 		$pic->save();
 	}
 
-	public function getHotPic( $page = 1, $per = 30) {
+	public function getHotPic( $page = 1, $per = 30, $condition = null) {
+		if (empty($condition)) $condition = "1=1";
 		$config = array(
-			'select' => 'id,path,file_name,title',
+			'select' => 'id,path,file_name,title,width,height',
 			'limit' => $per,
+			'condition' => $condition ,
 			'order' => 'view_count DESC',
 			'offset' => ($page - 1) * $per,
 		);
@@ -150,7 +154,7 @@ class Pic extends CActiveRecord
 		$result = array_rand($numbers, $per); 
 		$in_string = "(".join(",",$result).")";
 		$config = array(
-			'select' => 'id,path,file_name,title,view_count',
+			'select' => 'id,path,file_name,title,view_count,width,height',
 			'condition' => 'id in '.$in_string,	
 		);
 		return $this->f($config);

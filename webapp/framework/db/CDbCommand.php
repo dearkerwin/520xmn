@@ -537,7 +537,6 @@ class CDbCommand extends CComponent
 
 			if(YII_DEBUG)
 				$message.='. The SQL statement executed was: '.$this->getText().$par;
-
 			throw new CDbException(Yii::t('yii','CDbCommand failed to execute the SQL statement: {error}',
 				array('{error}'=>$message)),(int)$e->getCode(),$errorInfo);
 		}

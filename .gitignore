@@ -164,3 +164,5 @@ pip-log.txt
 /tools/getpic/core/mysql_setting.py
 /webapp/protected/config/main.php
 /webapp/protected/runtime/*.log
+/webapp/protected/runtime/gii-1.1.13
+gii-1.1.13

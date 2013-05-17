@@ -330,7 +330,15 @@ h3 {
   overflow: hidden;
 }
 
-
+/* ================scrollup ===============*/
+/* Image style */
+#scrollUp {
+  bottom: 20px;
+  right: 20px;
+  height: 50px;  /* Height of image */
+  width: 50px; /* Width of image */
+  background: url(../images/top.png) no-repeat;
+}
 
 /* ===== @about ===== */
 
