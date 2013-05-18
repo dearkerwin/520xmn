@@ -55,11 +55,11 @@ class PicController extends Controller
 	}
 	*/
 
-
 	/**
 	 * 获取一张图片
 	 */
 	public function actionOne( $id ) {
+		$id = decodeId($id);
 		$this->layout = "ajax";
 		$pic = Pic::model()->getOnePic($id);
 		if( !empty($pic) ) {

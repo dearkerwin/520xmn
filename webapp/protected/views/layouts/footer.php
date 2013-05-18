@@ -6,11 +6,12 @@
 
 				<!-- start: Row -->
 				<div class="row">
-		
 					<!-- start: copyright -->
-					<div class="span3">
+					<div class="span12">
 						<div class="copyright">
-							<p class="copyright">© 2012 compagny all Rights Reserved.</p>
+							<p style="text-align: center;">所有图片来源互联网，如有侵权，请邮件告知 520xmn@gmail.com , 会立即删除</p>
+							<p class="copyright">© 2013 520xmn.com all Rights Reserved.</p>
+							
 						</div>					
 					</div>	
 				</div><!-- end: Row -->	

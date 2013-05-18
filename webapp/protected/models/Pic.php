@@ -115,7 +115,8 @@ class Pic extends CActiveRecord
 			'with' =>array('tag') 
 			
 		);
-		return $this->f($config);
+		$pics = $this->f($config);
+		return $this->__encodePicId($pics);
 
 	}
 
@@ -126,7 +127,8 @@ class Pic extends CActiveRecord
 			'params' => array(':picID'=> $id),
 			'with' =>array('tag')	
 		);
-		return $this->f($config);
+		$pics = $this->f($config);
+		return $this->__encodePicId($pics);
 	}
 
 	public function increasePicView($id ) {
@@ -144,7 +146,8 @@ class Pic extends CActiveRecord
 			'order' => 'view_count DESC',
 			'offset' => ($page - 1) * $per,
 		);
-		return $this->f($config);
+		$pics = $this->f($config);
+		return $this->__encodePicId($pics);
 	}
 
 
@@ -157,7 +160,21 @@ class Pic extends CActiveRecord
 			'select' => 'id,path,file_name,title,view_count,width,height',
 			'condition' => 'id in '.$in_string,	
 		);
-		return $this->f($config);
+		$pics = $this->f($config);
+		return $this->__encodePicId($pics);
+	}
+
+
+	/**
+	 * 编码图片的ID
+	 */
+	private function __encodePicId( $pics ) {
+		if(!is_array($pics)) return $pics;
+		foreach ($pics as $key => &$value) {
+			if(isset($value['id'])) $value['id'] = encodeId($value['id']);
+		}
+		return $pics;
+
 	}
 
 

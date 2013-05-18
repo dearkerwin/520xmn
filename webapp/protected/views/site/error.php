@@ -37,19 +37,19 @@ $this->pageTitle=Yii::app()->name . ' - Error';
 									<p> 骚年，要不试试这些？？</p>
 									<div class="error-link profile">
 										<a href="<?php echo Yii::app()->createUrl("Pic/tagpic",array("tag"=>"hot"));?>">
-											<img class="img-polaroid" alt="520小美女--热门图片"  title="520小美女--热门图片"  src="../../images/hot.jpg">
+											<img class="img-polaroid" alt="520小美女--热门图片"  title="520小美女--热门图片"  src="<?php echo WEB_ROOT;?>images/hot.jpg">
 											<h4>热门图片</h4>
 										</a>
 									</div>
 									<div class="error-link profile">
 										<a href="<?php echo Yii::app()->createUrl("Pic/tagpic",array("tag"=>"new"));?>">
-											<img class="img-polaroid" alt="520小美女--最新图片"  title="520小美女--最新图片" src="../../images/new.jpg">
+											<img class="img-polaroid" alt="520小美女--最新图片"  title="520小美女--最新图片" src="<?php echo WEB_ROOT;?>images/new.jpg">
 											<h4>最新图片</h4>
 										</a>
 									</div>
 									<div class="error-link profile">
 										<a href="<?php echo Yii::app()->createUrl("Pic/index");?>">
-											<img class="img-polaroid" alt="520小美女--返回首页"   title="520小美女--返回首页" src="../../images/home.jpg">
+											<img class="img-polaroid" alt="520小美女--返回首页"   title="520小美女--返回首页" src="<?php echo WEB_ROOT;?>images/home.jpg">
 											<h4>返回首页</h4>
 										</a>
 									</div>									
