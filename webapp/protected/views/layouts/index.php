@@ -10,6 +10,7 @@
 		<!-- start: Meta -->
 		<meta charset="utf-8">
 		<title>520小美女 520xmn.com</title> 
+		<link rel="shortcut icon" href="<?php echo Yii::app()->request->baseUrl; ?>/images/favicon.ico">
 		<meta content="一个只有美女图片的网站" name="description">
 		<meta content="美女 图片 胸 腿" name="keywords">
 		<!-- end: Meta -->

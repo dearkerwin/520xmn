@@ -7,7 +7,7 @@
 				<!--start: Row -->
 				<div class="row">
 				
-					<a href="<?php echo Yii::app()->createUrl("Pic/index");?>"class="logo"><span>520小美女</span></a>
+					<a href="<?php echo Yii::app()->createUrl("Pic/index");?>"class="logo"><img src="<?php echo Yii::app()->request->baseUrl;?>/images/logo.png"/></a>
 
 					<!--start: Navigation -->	
 					<div class="navbar navbar-inverse">
