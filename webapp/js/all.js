@@ -47,11 +47,12 @@ $(function(){
 	    	}, 
 		    function( newElements ) {
 		        // hide new items while they are loading
-		        var $newElems = $( newElements ).css({ opacity: 0 });
+		        // var $newElems = $( newElements ).css({ opacity: 0 });
+		        var $newElems = $( newElements );
 		        // ensure that images load before adding to masonry layout
 		        $newElems.imagesLoaded(function(){
 					// show elems now they're ready
-					$newElems.animate({ opacity: 1 });
+					// $newElems.animate({ opacity: 1 });
 					$container.masonry( 'appended', $newElems, true ); 
 					initItem();
 		    	});

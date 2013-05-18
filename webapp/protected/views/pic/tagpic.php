@@ -25,11 +25,9 @@
 				foreach ($pics as  $pic): 
 					$height = (int)(($pic['height'] /$pic['width']) * 220);
 			?>
-				<div class='item'>	 
-					<a  href="<?php echo Yii::app()->createUrl("Pic/one",array("id"=>$pic['id']));?>">
-						<img src="<?php echo  PIC_THUMB_ROOT.$pic['path'].$pic['file_name'];?>" style=" height:<?php echo $height;?>px" />
-					</a>
-				</div>
+				<a  class='item' href="<?php echo Yii::app()->createUrl("Pic/one",array("id"=>$pic['id']));?>">
+					<img src="<?php echo  PIC_THUMB_ROOT.$pic['path'].$pic['file_name'];?>" style=" height:<?php echo $height;?>px" />
+				</a>
 			<?php endforeach; ?>
 		</div>
 		<!-- end: image grid -->
