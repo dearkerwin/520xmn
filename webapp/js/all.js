@@ -1,7 +1,7 @@
 $(function(){
-	initItem();
-	initPictureNew();
-	initPictureHot();
+	initColorboxItem();
+	initColorboxPictureNew();
+	initColorboxPictureHot();
 	initMasonry();
 	initInfiniteScroll();
 	initScrollup();
@@ -40,23 +40,11 @@ $(function(){
 					img:  BASE_PATH + "images/loading-new.gif",
 					msgText : "网速不给力,美女马上就来,不要急嘛...",
 				},
-			// state: {
-			// 	isDuringAjax: function(){console.log("during");}
-			// }
-      
 	    	}, 
 		    function( newElements ) {
-		        // hide new items while they are loading
-		        // var $newElems = $( newElements ).css({ opacity: 0 });
 		        var $newElems = $( newElements );
-		        // ensure that images load before adding to masonry layout
-		        $newElems.imagesLoaded(function(){
-					// show elems now they're ready
-					// $newElems.animate({ opacity: 1 });
-					$container.masonry( 'appended', $newElems, true ); 
-					initItem();
-		    	});
-
+				$container.masonry( 'appended', $newElems, true ); 
+				initColorboxItem();
 	    	}
 	    );
 	}
@@ -68,15 +56,15 @@ $(function(){
 		return items;
 	}
 
-	function initItem() {
+	function initColorboxItem() {
 		$(".item").colorbox({ rel: 'group1' ,transition:"fade" ,width: "80%"});
 	}
 
-	function initPictureNew() {
+	function initColorboxPictureNew() {
 		$(".picture-new").colorbox({ rel: 'group2' ,transition:"fade" ,width: "80%"});
 	}
 
-	function initPictureHot() {
+	function initColorboxPictureHot() {
 		$(".picture-hot").colorbox({ rel: 'group3',transition:"fade" ,width: "80%" });
 	}
 

@@ -126,5 +126,18 @@ class PicController extends Controller
 	}
 
 
+	/**
+	 * 错误信息展示
+	 */
+	public function actionError()
+	{
+		if($error=Yii::app()->errorHandler->error)
+		{
+			if(Yii::app()->request->isAjaxRequest)
+				echo $error['message'];
+			else
+				$this->render('error', $error);
+		}
+	}
 
 }

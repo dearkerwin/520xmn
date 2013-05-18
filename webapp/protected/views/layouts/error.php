@@ -23,7 +23,6 @@
 	    <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrap-responsive.css">
 	    <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/font-awesome.css">
 	    <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/style.css">
-	    <link media="screen" rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/colorbox.css" />
 	    <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery-1.7.1.min.js"></script>
 		<!-- end: CSS -->
 
@@ -40,22 +39,12 @@
     	
 
 	
-		<?php echo $content;?> 
+		<?php echo $content;?>  
 
-
-		<?php echo $this->renderPartial('/layouts/attitude'); ?> 
-		<?php echo $this->renderPartial('/layouts/mingyan'); ?> 
 		<?php echo $this->renderPartial('/layouts/contact'); ?>  
 		<?php echo $this->renderPartial('/layouts/footer'); ?>  
 
 		
 	  	<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.masonry.min.js"></script>
-		<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.colorbox.min.js"></script>
-		<!-- // <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.infinitescroll.min.js"></script> -->
-		<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.infinitescroll.dev.js"></script>
-		<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jqcloud-1.0.3.min.js"></script>
-		<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.scrollUp.min.js"></script>
-		<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/all.js"></script>
     </body>
 </html>

@@ -10,7 +10,6 @@
 </style>
 
 <div class="one" >
-	<img src="<?php echo  PIC_ROOT.$pic['path'].$pic['file_name'];?>"  style="height:<?php echo $pic['height'];?>px; width:<?php echo $pic['width'];?>px" />
 	<div class="tag"> 
 		<p> 标签: </p>
 	<?php
@@ -22,4 +21,6 @@
 		endforeach;
 	?>
 	</div>
+	<img src="<?php echo  PIC_ROOT.$pic['path'].$pic['file_name'];?>"  style="height:<?php echo $pic['height'];?>px; width:<?php echo $pic['width'];?>px" />
+	
 </div>

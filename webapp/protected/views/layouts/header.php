@@ -32,3 +32,4 @@
 
 	</header><!--end: Header -->
 	<div style="display:block; height:62px"> </div> 
+	<script type="text/javascript" > var BASE_PATH= "<?php echo Yii::app()->request->baseUrl;?>/";</script>
