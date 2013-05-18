@@ -46,5 +46,6 @@
 
 		
 	  	<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/bootstrap.min.js"></script>
+	  	<?php echo $this->renderPartial('/layouts/analytics'); ?>  
     </body>
 </html>

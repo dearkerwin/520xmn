@@ -18,3 +18,4 @@
 			</div><!--end: Container -->
 		</div>
 	</footer>
+	<script type="text/javascript" src="http://tajs.qq.com/stats?sId=24638220" charset="UTF-8"></script>
