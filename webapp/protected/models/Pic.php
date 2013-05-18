@@ -165,22 +165,7 @@ class Pic extends CActiveRecord
 	}
 
 
-	/**
-	 * 编码图片的ID
-	 */
-	private function __encodePicId( $pics ) {
-		if(!is_array($pics)) return $pics;
-		foreach ($pics as $key => &$value) {
-			if(isset($value['id'])) $value['id'] = encodeId($value['id']);
-		}
-		return $pics;
-
-	}
-
-
-
-
-
+	
 
 	
 }

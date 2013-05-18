@@ -5,7 +5,9 @@
 }
 .tag p{
   display: inline-block;
-  margin: 10px 5px;
+  margin: 15px 5px;
+  font-size: 16px;
+  font-weight: bold;
 }
 </style>
 

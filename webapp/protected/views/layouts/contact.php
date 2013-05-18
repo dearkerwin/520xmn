@@ -4,20 +4,19 @@
 			<!-- start: Container -->
 			<div class="container">
 				<!--start: anchor service -->
-				<a id="contact">&nbsp;</a><!--anchorLink: contact -->
 				<!-- start: Row -->
 				<div class="row">
 					<div class="span12">
-						<div class="title"><h3>友情链接</h3></div>
+						<div class="title"><h5>友情链接</h5></div>
 					</div>
-					<div class="span2">
+					<div class="span1">
 						<p>
-							<b>Company Name</b>
+							<a href="http://ifxoxo.com"> ifxoxo.com</a>
 						</p>
 					</div>
-					<div class="span2">
+					<div class="span1">
 						<p>
-							<b>Company Name</b>
+							<a href="http://ifxoxo.com"> ifxoxo.com</a>
 						</p>
 					</div>
 				</div><!-- end: Row -->

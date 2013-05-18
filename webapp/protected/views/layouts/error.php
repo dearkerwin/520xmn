@@ -33,7 +33,7 @@
 			<style>.ch-grid {float: left;}.ch-grid li {float: left;margin-left:100px;}.about-pattern {background-position: center;background-repeat: repeat-x;border:none;}</style>
 		<![endif]-->
     </head>
-    <body>
+    <body style="background: #000">
     	<a id="home"></a><!--anchorLink: home -->	
     	<?php echo $this->renderPartial('/layouts/header'); ?> 
     	

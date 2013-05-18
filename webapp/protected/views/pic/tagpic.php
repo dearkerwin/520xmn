@@ -8,7 +8,14 @@
 	<div class="row">
 		<div class="span12">	
 			<div class="title">
-				<h3><a href="#"><?php echo $tag_name;?></a></h3>
+				<h3>
+					<a href="#"><?php echo $tag_name;?></a> 
+					<?php if($pic_count != 0) :?>
+
+						<span style="font-size:16px">(<?php echo $pic_count;?>张图片)</span>
+
+					<?php endif;?>
+				</h3>
 			</div>
 		</div>
 		<!-- <div class="span12"> -->

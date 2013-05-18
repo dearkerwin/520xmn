@@ -314,6 +314,7 @@ class CDbCommand extends CComponent
 	 */
 	public function execute($params=array())
 	{
+		debug($params);
 		if($this->_connection->enableParamLogging && ($pars=array_merge($this->_paramLog,$params))!==array())
 		{
 			$p=array();

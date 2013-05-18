@@ -90,6 +90,7 @@ class PicController extends Controller
 		$tag = urldecode($tag);
 		$pics = array();
 		$tag_name = $tag;
+		$pic_count = 0;
 		if( $tag == "new") {
 			$pics = Pic::model()->getNewPic();
 			$tag_name ="最新";
@@ -98,11 +99,13 @@ class PicController extends Controller
 			$tag_name = "热门";
 		} else {
 			$pics = Term::model()->getTagPic($tag);
+			$pic_count = Term::model()->getSingleTagCount($tag);
 		}
 		$this->render('tagpic',array(
 			'pics' =>$pics,
 			'tag' => $tag,
-			'tag_name' => $tag_name
+			'tag_name' => $tag_name,
+			'pic_count' => $pic_count[$tag]
 		));
 	}
 
