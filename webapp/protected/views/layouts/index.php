@@ -25,7 +25,6 @@
 	    <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/font-awesome.css">
 	    <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/style.css">
 	    <link media="screen" rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/colorbox.css" />
-	    <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery-1.7.1.min.js"></script>
 		<!-- end: CSS -->
 
 	    <!--[if IE 9]>
@@ -34,6 +33,8 @@
 	    <!--[if IE 8]>
 			<style>.ch-grid {float: left;}.ch-grid li {float: left;margin-left:100px;}.about-pattern {background-position: center;background-repeat: repeat-x;border:none;}</style>
 		<![endif]-->
+		<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery-1.7.1.min.js"></script>
+	    <?php echo $this->renderPartial('/layouts/analytics'); ?>  
     </head>
     <body>
     	<a id="home"></a><!--anchorLink: home -->	
@@ -58,7 +59,7 @@
 		<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jqcloud-1.0.3.min.js"></script>
 		<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.scrollUp.min.js"></script>
 		<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/all.js"></script>
-		<?php echo $this->renderPartial('/layouts/analytics'); ?>  
+		
 		
     </body>
 </html>

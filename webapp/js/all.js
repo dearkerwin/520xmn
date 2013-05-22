@@ -26,6 +26,10 @@ $(function(){
 	function initInfiniteScroll() {
 		var $container = $('#masonny-div');
 		var $sign = $("#masonny-Sign");
+		var currentPage = 1;
+		var ajaxPath = $("#next a").attr('href');
+		ajaxPath = ajaxPath.substring( 0, (ajaxPath.length -1) );
+		
 		$('#masonny-div').infinitescroll({
 		   //#masonny-div 是包括所有文章的div元素id
 			navSelector  : "#next",   // 页面分页元素(成功后隐藏)
@@ -45,9 +49,14 @@ $(function(){
 		        var $newElems = $( newElements );
 				$container.masonry( 'appended', $newElems, true ); 
 				initColorboxItem();
+				currentPage ++;
+				push_pv(ajaxPath+currentPage);
+				
 	    	}
 	    );
 	}
+
+	
 
 		
 
@@ -57,11 +66,11 @@ $(function(){
 	}
 
 	function initColorboxItem() {
-		$(".item").colorbox({ rel: 'group1' ,transition:"fade" ,width: "80%"});
+		$(".item").colorbox({ rel: 'group1',transition:"fade" ,width: "80%"});
 	}
 
 	function initColorboxPictureNew() {
-		$(".picture-new").colorbox({ rel: 'group2' ,transition:"fade" ,width: "80%"});
+		$(".picture-new").colorbox({ rel: 'group2',transition:"fade" ,width: "80%"});
 	}
 
 	function initColorboxPictureHot() {
@@ -84,6 +93,13 @@ $(function(){
 	}
 
 });
+
+function push_pv(url) {
+	if(typeof(_hmt) != 'undefined'){
+		console.log(url);
+		_hmt.push(['_trackPageview', url]); 
+	}
+}
 
 
 
