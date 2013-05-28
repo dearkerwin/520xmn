@@ -4,7 +4,7 @@
 		<div class="work-pattern">		
 			<!--start: Container -->
 	    	<div class="container">
-				<div class="row"><!-- start: Row 热门 -->
+				<div class="row hot"><!-- start: Row 热门 -->
 					<div class="span12">	
 						<div class="title">
 							<h3><a href="<?php echo Yii::app()->createUrl("Pic/tagpic",array("tag"=>"hot"));?>"> 热门 <span class="more"> 更多>></span> </a></h3>
@@ -24,7 +24,7 @@
 				</div><!-- end: Row  热门-->
 
 
-				<div class="row"><!-- start: Row 最新 -->
+				<div class="row new"><!-- start: Row 最新 -->
 					<div class="span12">	
 						<div class="title">
 							<!-- <h3>最新</h3> -->
@@ -36,7 +36,8 @@
 					<div class="span2 span2-height">	
 						<div class="thumbs">
 							<a href="<?php echo Yii::app()->createUrl("Pic/one",array("id"=>$pic['id']));?>"  class="picture picture-new">
-								<img class="img-polaroid" alt="content" src="<?php echo  PIC_THUMB_ROOT.$pic['path'].$pic['file_name'];?>">
+								<!-- <img class="img-polaroid" alt="content" src="<?php echo  PIC_THUMB_ROOT.$pic['path'].$pic['file_name'];?>"  src="img/grey.gif" data-original="<?php echo  PIC_THUMB_ROOT.$pic['path'].$pic['file_name'];?>"> -->
+								<img class="img-polaroid" alt="美女 图片" src="<?php echo WEB_ROOT;?>images/loazload.gif"  data-original="<?php echo  PIC_THUMB_ROOT.$pic['path'].$pic['file_name'];?>">
 								<span><i class="icon-info-sign"></i></span>
 							</a>
 						</div>
@@ -69,13 +70,14 @@
     <div class="container">
 		<div class="row">
 			<!--start: image grid -->
-			<div id="masonny-div" >
+			<div id="masonny-div" class="rand">
 				<?php 
 					foreach ($rand_pics as  $pic): 
 						$height = (int)(($pic['height'] /$pic['width']) * 220);
 				?>
 					<a  class='item' href="<?php echo Yii::app()->createUrl("Pic/one",array("id"=>$pic['id']));?>">
-						<img src="<?php echo  PIC_THUMB_ROOT.$pic['path'].$pic['file_name'];?>" style=" height:<?php echo $height;?>px" />
+						<!-- <img src="<?php echo  PIC_THUMB_ROOT.$pic['path'].$pic['file_name'];?>" style=" height:<?php echo $height;?>px" /> -->
+						<img data-original="<?php echo  PIC_THUMB_ROOT.$pic['path'].$pic['file_name'];?>" style=" height:<?php echo $height;?>px" alt="美女 图片 加载中.."  />
 					</a>
 				<?php endforeach; ?>
 			</div>

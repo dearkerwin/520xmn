@@ -5,6 +5,7 @@ $(function(){
 	initMasonry();
 	initInfiniteScroll();
 	initScrollup();
+	initLazyLoad();
 
 
 	
@@ -89,6 +90,30 @@ $(function(){
 			scrollImg: true,
 			topDistance: '500',
 			scrollText: '返回顶部'
+		});
+	}
+
+	function initLazyLoad() {
+		$(".new img").lazyload({
+			event : "sporty"
+		});
+		$(window).bind("load", function() { 
+		    var timeout = setTimeout(
+		    	function() {
+		    		$(".new img").trigger("sporty");
+		    	}, 1000
+		    );
+		});
+
+		$(".rand img").lazyload({
+			event : "sporty1"
+		});
+		$(window).bind("load", function() { 
+		    var timeout = setTimeout(
+		    	function() {
+		    		$(".rand img").trigger("sporty1");
+		    	}, 3000
+		    );
 		});
 	}
 
