@@ -270,7 +270,7 @@ h3 {
   border: none;
   overflow: hidden;
 }
-.thumbs a span{
+.thumbs a span, .item span{
   background: #000;
   font-size: 30px;
   border: none;
@@ -291,7 +291,7 @@ h3 {
   -moz-opacity: 0;
   opacity: 0;    
 }
-.thumbs a:hover span{
+.thumbs a:hover span, .item:hover span{
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0.6)";
   filter: alpha(opacity=0.6);
   -khtml-opacity: 0.6;
@@ -317,7 +317,7 @@ h3 {
 .item {
   width: 220px;
   margin: 10px;
-  float: left;
+  display:block;
 }
 #masonny-div{
  /* width: 95%;*/

@@ -52,13 +52,15 @@
 
 		
 	  	<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.tools.min.js"></script>
+	<!--
 		<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.masonry.min.js"></script>
 		<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.colorbox.min.js"></script>
 		<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.infinitescroll.min.js"></script>
-		<!--<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.infinitescroll.dev.js"></script>-->
 		<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jqcloud-1.0.3.min.js"></script>
 		<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.scrollUp.min.js"></script>
 		<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.lazyload.min.js"></script>
+	-->
 		<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/all.js"></script>
 		
 		
