@@ -7,11 +7,10 @@ class PicController extends Controller
 	public function actionIndex()
 	{
 		$this->render('index',array(
-				// 'new_pics' => Pic::model()->getNewPic(4,12),
-				'new_pics' => Term::model()->getTagPic("小清新",1,12),
-				'hot_pics' => Pic::model()->getHotPic(1,8),
+				'new_pics' => Pic::model()->getNewPic(1,12, "height > width"),
+				// 'new_pics' => Term::model()->getTagPic("小清新",1,12),
+				'hot_pics' => Pic::model()->getHotPic(1,8, "height > width"),
 				'rand_pics' => Pic::model()->getRandPic(),
-				// 'tags' => json_encode($tags)
 
 			));
 	}
@@ -56,11 +55,11 @@ class PicController extends Controller
 	}
 	*/
 
-
 	/**
 	 * 获取一张图片
 	 */
 	public function actionOne( $id ) {
+		$id = decodeId($id);
 		$this->layout = "ajax";
 		$pic = Pic::model()->getOnePic($id);
 		if( !empty($pic) ) {
@@ -91,6 +90,7 @@ class PicController extends Controller
 		$tag = urldecode($tag);
 		$pics = array();
 		$tag_name = $tag;
+		$pic_count = 0;
 		if( $tag == "new") {
 			$pics = Pic::model()->getNewPic();
 			$tag_name ="最新";
@@ -99,11 +99,13 @@ class PicController extends Controller
 			$tag_name = "热门";
 		} else {
 			$pics = Term::model()->getTagPic($tag);
+			$pic_count = Term::model()->getSingleTagCount($tag);
 		}
 		$this->render('tagpic',array(
 			'pics' =>$pics,
 			'tag' => $tag,
-			'tag_name' => $tag_name
+			'tag_name' => $tag_name,
+			'pic_count' => $pic_count[$tag]
 		));
 	}
 
@@ -125,7 +127,6 @@ class PicController extends Controller
 			'pics' => $pics
 		));
 	}
-
 
 
 }

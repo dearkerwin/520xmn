@@ -11,7 +11,7 @@ defined('YII_DEBUG') or define('YII_DEBUG',true);
 defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL',3);
 
 defined('YII_ROOT') or define('YII_ROOT',dirname(__FILE__));
-
+defined('WEB_ROOT') or define("WEB_ROOT",$_SERVER['SCRIPT_NAME']."/../");
 require_once($yii);
 require_once($constant);
 require_once(dirname(__FILE__).'/basic.php');

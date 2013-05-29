@@ -5,12 +5,13 @@
 }
 .tag p{
   display: inline-block;
-  margin: 10px 5px;
+  margin: 15px 5px;
+  font-size: 16px;
+  font-weight: bold;
 }
 </style>
 
 <div class="one" >
-	<img src="<?php echo  PIC_ROOT.$pic['path'].$pic['file_name'];?>"  style="height:<?php echo $pic['height'];?>px; width:<?php echo $pic['width'];?>px" />
 	<div class="tag"> 
 		<p> 标签: </p>
 	<?php
@@ -22,4 +23,6 @@
 		endforeach;
 	?>
 	</div>
+	<img src="<?php echo  PIC_ROOT.$pic['path'].$pic['file_name'];?>"  style="height:<?php echo $pic['height'];?>px; width:<?php echo $pic['width'];?>px" />
+	
 </div>

@@ -114,7 +114,7 @@ class Term extends CActiveRecord
 				}
 			}	
 		}	
-		return $pics;
+		return $this->__encodePicId($pics);
 	}
 
 	/**
@@ -123,6 +123,24 @@ class Term extends CActiveRecord
 	public function getTagCount() {
 		$config = array(
 			'select' => 'id, name',
+			'with' => array('tag_count')
+		);
+		$tags = $this->f($config);
+		$tagsCount = array();
+		foreach ($tags as $key => $value) {
+			$tagsCount[$value['name']] =  $value['Relations']['tag_count'];
+		}
+		return $tagsCount;
+	}
+
+	/**
+	 * 获取一个标签中图片的总数量
+	 */
+	public function getSingleTagCount($tag) {
+		$config = array(
+			'select' => 'id, name',
+			'condition' => 't.name=:tagName',
+			'params' => array(':tagName'=> $tag),
 			'with' => array('tag_count')
 		);
 		$tags = $this->f($config);
