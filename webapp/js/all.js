@@ -67,7 +67,7 @@ $(function(){
 	}
 
 	function initColorboxItem() {
-		$(".item").colorbox({ rel: 'group1',transition:"fade" ,width: "80%"});
+		$(".item a").colorbox({ rel: 'group1',transition:"fade" ,width: "80%"});
 	}
 
 	function initColorboxPictureNew() {
