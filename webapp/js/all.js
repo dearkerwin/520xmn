@@ -6,8 +6,6 @@ $(function(){
 	initInfiniteScroll();
 	initScrollup();
 	initLazyLoad();
-
-
 	
 	function initMasonry() {
 		var $container = $('#masonny-div');

@@ -76,7 +76,7 @@
 						$height = (int)(($pic['height'] /$pic['width']) * 220);
 				?>
 				<div class='item' style=" height:<?php echo $height;?>px">
-					<a  href="<?php echo Yii::app()->createUrl("Pic/one",array("id"=>$pic['id']));?>"  >
+					<a  href="<?php echo Yii::app()->createUrl("Pic/one",array("id"=>$pic['id']));?>" >
 						<img  data-original="<?php echo  PIC_THUMB_ROOT.$pic['path'].$pic['file_name'];?>" style=" height:<?php echo $height;?>px" alt="美女 图片 加载中.."  />
 						<span><i class="icon-info-sign"></i></span>
 					</a>

@@ -270,12 +270,11 @@ h3 {
   border: none;
   overflow: hidden;
 }
-.thumbs a span, .item span{
+.thumbs a span, .item a span{
   background: #000;
   font-size: 30px;
   border: none;
   height: 100%;
-  /*left: 5px;*/
   line-height: 250px;
   position: absolute;
   text-align: center;
@@ -289,7 +288,8 @@ h3 {
   filter: alpha(opacity=0);
   -khtml-opacity: 0;
   -moz-opacity: 0;
-  opacity: 0;    
+  opacity: 0;   
+  left:0px; 
 }
 .thumbs a:hover span, .item:hover span{
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0.6)";
