@@ -20,23 +20,42 @@ class StockHelper():
     def set_proxy(self, proxy):
         self.proxy = proxy
  
-    def __request(self, symbol, stat):  
+    def __request(self, stock_id, stat):  
+        symbol = self.__format_to_yahoo_symbol_from_num(stock_id)
         url = 'http://finance.yahoo.com/d/quotes.csv?s=%s&f=%s' % (symbol, stat)
         return self.__get(url).read().strip().strip('"')  
+
+    def __format_to_yahoo_symbol_from_num(self, stock_id):
+        stock_id = int(str(stock_id))
+        stock_id = '%04d'%stock_id
+        return stock_id + '.HK'
+
+    def __format_to_sina_symbol_from_num(self, stock_id):
+        stock_id = int(str(stock_id))
+        stock_id = '%05d'%stock_id
+        return 'hk' + stock_id
+
 
     def __get(self, url):
         if self.proxy != '':
             return   urllib.urlopen(url, proxies=self.proxy)  
         return urllib.urlopen(url)
+
+    def get_chinese_name(self, stock_id):
+        url = 'http://hq.sinajs.cn/list=' + self.__format_to_sina_symbol_from_num(stock_id)
+        info = self.__get(url).read().strip().strip('"') .split(',')
+        if len(info) > 1:
+            return info[1]
+        else :
+            return ''
       
-      
-    def get_all(self, symbol):  
+    def get_all(self, stock_id):  
         """ 
-        Get all available quote data for the given ticker symbol. 
+        Get all available quote data for the given ticker stock_id. 
          
         Returns a dictionary. 
         """  
-        values = self.__request(symbol, 'l1c1va2xj1b4j4dyekjm3m4rr5p5p6s7').split(',')
+        values = self.__request(stock_id, 'l1c1va2xj1b4j4dyekjm3m4rr5p5p6s7').split(',')
         data = {}  
         data['price'] = values[0]  
         data['change'] = values[1]  
@@ -61,93 +80,97 @@ class StockHelper():
         return data  
           
           
-    def get_price(self, symbol):   
-        return self.__request(symbol, 'l1')  
+    def get_price(self, stock_id):   
+        return self.__request(stock_id, 'l1')  
       
       
-    def get_change(self, symbol):  
-        return self.__request(symbol, 'c1')  
+    def get_change(self, stock_id):  
+        return self.__request(stock_id, 'c1')  
           
           
-    def get_volume(self, symbol):   
-        return self.__request(symbol, 'v')  
+    def get_volume(self, stock_id):   
+        return self.__request(stock_id, 'v')  
       
       
-    def get_avg_daily_volume(self, symbol):   
-        return self.__request(symbol, 'a2')  
+    def get_avg_daily_volume(self, stock_id):   
+        return self.__request(stock_id, 'a2')  
           
           
-    def get_stock_exchange(self, symbol):   
-        return self.__request(symbol, 'x')  
+    def get_stock_exchange(self, stock_id):   
+        return self.__request(stock_id, 'x')  
           
           
-    def get_market_cap(self, symbol):  
-        return self.__request(symbol, 'j1')  
+    def get_market_cap(self, stock_id):  
+        return self.__request(stock_id, 'j1')  
          
          
-    def get_book_value(self, symbol):  
-        return self.__request(symbol, 'b4')  
+    def get_book_value(self, stock_id):  
+        return self.__request(stock_id, 'b4')  
       
       
-    def get_ebitda(self, symbol):   
-        return self.__request(symbol, 'j4')  
+    def get_ebitda(self, stock_id):   
+        return self.__request(stock_id, 'j4')  
           
           
-    def get_dividend_per_share(self, symbol):  
-        return self.__request(symbol, 'd')  
+    def get_dividend_per_share(self, stock_id):  
+        return self.__request(stock_id, 'd')  
       
       
-    def get_dividend_yield(self, symbol):   
-        return self.__request(symbol, 'y')  
+    def get_dividend_yield(self, stock_id):   
+        return self.__request(stock_id, 'y')  
           
           
-    def get_earnings_per_share(self, symbol):   
-        return self.__request(symbol, 'e')  
+    def get_earnings_per_share(self, stock_id):   
+        return self.__request(stock_id, 'e')  
       
       
-    def get_52_week_high(self, symbol):   
-        return self.__request(symbol, 'k')  
+    def get_52_week_high(self, stock_id):   
+        return self.__request(stock_id, 'k')  
           
           
-    def get_52_week_low(sself, ymbol):   
-        return self.__request(symbol, 'j')  
+    def get_52_week_low(sself, stock_id):   
+        return self.__request(stock_id, 'j')  
       
       
-    def get_50day_moving_avg(self, symbol):   
-        return self.__request(symbol, 'm3')  
+    def get_50day_moving_avg(self, stock_id):   
+        return self.__request(stock_id, 'm3')  
           
           
-    def get_200day_moving_avg(self, symbol):   
-        return self.__request(symbol, 'm4')  
+    def get_200day_moving_avg(self, stock_id):   
+        return self.__request(stock_id, 'm4')  
           
           
-    def get_price_earnings_ratio(self, symbol):   
-        return self.__request(symbol, 'r')  
+    def get_price_earnings_ratio(self, stock_id):   
+        return self.__request(stock_id, 'r')  
       
       
-    def get_price_earnings_growth_ratio(self, symbol):   
-        return self.__request(symbol, 'r5')  
+    def get_price_earnings_growth_ratio(self, stock_id):   
+        return self.__request(stock_id, 'r5')  
       
       
-    def get_price_sales_ratio(self, symbol):   
-        return self.__request(symbol, 'p5')  
+    def get_price_sales_ratio(self, stock_id):   
+        return self.__request(stock_id, 'p5')  
           
           
-    def get_price_book_ratio(self, symbol):   
-        return self.__request(symbol, 'p6')  
+    def get_price_book_ratio(self, stock_id):   
+        return self.__request(stock_id, 'p6')  
              
              
-    def get_short_ratio(self, symbol):   
-        return self.__request(symbol, 's7')  
+    def get_short_ratio(self, stock_id):   
+        return self.__request(stock_id, 's7')  
+
+    def get_name(self, stock_id):   
+        return self.__request(stock_id, 'n')  
           
           
-    def get_historical_prices(self, symbol, start_date, end_date):  
+    def get_historical_prices(self, stock_id, start_date, end_date):  
         """ 
-        Get historical prices for the given ticker symbol. 
+        Get historical prices for the given ticker stock_id. 
         Date format is 'YYYYMMDD' 
          
         Returns a nested list. 
         """  
+        symbol = self.__format_to_yahoo_symbol_from_num(stock_id)
         url = 'http://ichart.yahoo.com/table.csv?s=%s&' % symbol + \
               'd=%s&' % str(int(end_date[4:6]) - 1) + \
               'e=%s&' % str(int(end_date[6:8])) + \
@@ -165,7 +188,10 @@ class StockHelper():
 def main():
     stock_helper = StockHelper()
     stock_helper.set_proxy({'http': 'http://web-proxy.oa.com:8080'})
-    print stock_helper.get_historical_prices('3888.HK','20130601','20130626')
+    # print stock_helper.get_historical_prices('3888','20130601','20130626')
+    print stock_helper.get_all(700)
+
+    
 
 
 if __name__ == '__main__':
