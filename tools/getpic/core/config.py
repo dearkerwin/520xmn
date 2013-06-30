@@ -1,2 +1,2 @@
-savePath = 'f:/www/static/pic/'
-thumbPath = 'f:/www/static/thumb/'
+savePath = 'i:/kerwin_www/static/pic/'
+thumbPath = 'i:/kerwin_www/static/thumb/'
