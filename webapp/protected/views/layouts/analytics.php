@@ -1,4 +1,4 @@
-<script type="text/javascript" src="http://tajs.qq.com/stats?sId=24638220" charset="UTF-8"></script>
+<!-- <script type="text/javascript" src="http://tajs.qq.com/stats?sId=24638220" charset="UTF-8"></script> -->
 <script type="text/javascript">
 var _hmt = _hmt || [];
 (function() {

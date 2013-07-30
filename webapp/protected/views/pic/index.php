@@ -4,27 +4,9 @@
 		<div class="work-pattern">		
 			<!--start: Container -->
 	    	<div class="container">
-				<div class="row hot"><!-- start: Row 热门 -->
-					<div class="span12">	
-						<div class="title">
-							<h3><a href="<?php echo Yii::app()->createUrl("Pic/tagpic",array("tag"=>"hot"));?>"> 热门 <span class="more"> 更多>></span> </a></h3>
-						</div>
-					</div>
-
-					<?php foreach ($hot_pics as  $pic): ?>
-					<div class="span3 span3-height">	
-						<div class="thumbs">
-							<a href="<?php echo Yii::app()->createUrl("Pic/one",array("id"=>$pic['id']));?>"  class="picture picture-hot">
-								<img class="img-polaroid" alt="content" src="<?php echo PIC_THUMB_ROOT.$pic['path'].$pic['file_name'];?>">
-								<span><i class="icon-info-sign"></i></span>
-							</a>
-						</div>
-					</div>
-					<?php endforeach; ?>
-				</div><!-- end: Row  热门-->
 
 
-				<div class="row new"><!-- start: Row 最新 -->
+	    		<div class="row new"><!-- start: Row 最新 -->
 					<div class="span12">	
 						<div class="title">
 							<!-- <h3>最新</h3> -->
@@ -36,14 +18,36 @@
 					<div class="span2 span2-height">	
 						<div class="thumbs">
 							<a href="<?php echo Yii::app()->createUrl("Pic/one",array("id"=>$pic['id']));?>"  class="picture picture-new">
-								<!-- <img class="img-polaroid" alt="content" src="<?php echo  PIC_THUMB_ROOT.$pic['path'].$pic['file_name'];?>"  src="img/grey.gif" data-original="<?php echo  PIC_THUMB_ROOT.$pic['path'].$pic['file_name'];?>"> -->
-								<img class="img-polaroid" alt="美女 图片" src="<?php echo WEB_ROOT;?>images/loazload.gif"  data-original="<?php echo  PIC_THUMB_ROOT.$pic['path'].$pic['file_name'];?>">
+								<img class="img-polaroid" alt="美女 图片 520xmn"  src="<?php echo  PIC_THUMB_ROOT.$pic['path'].$pic['file_name'];?>">
 								<span><i class="icon-info-sign"></i></span>
 							</a>
 						</div>
 					</div>
 					<?php endforeach; ?>
 				</div><!-- end: Row 最新 -->
+
+
+				<div class="row hot"><!-- start: Row 热门 -->
+					<div class="span12">	
+						<div class="title">
+							<h3><a href="<?php echo Yii::app()->createUrl("Pic/tagpic",array("tag"=>"hot"));?>"> 热门 <span class="more"> 更多>></span> </a></h3>
+						</div>
+					</div>
+
+					<?php foreach ($hot_pics as  $pic): ?>
+					<div class="span3 span3-height">	
+						<div class="thumbs">
+							<a href="<?php echo Yii::app()->createUrl("Pic/one",array("id"=>$pic['id']));?>"  class="picture picture-hot">
+								<img class="img-polaroid" alt="美女 图片 520xmn"   src="<?php echo WEB_ROOT;?>images/loazload.gif" data-original="<?php echo PIC_THUMB_ROOT.$pic['path'].$pic['file_name'];?>">
+								<span><i class="icon-info-sign"></i></span>
+							</a>
+						</div>
+					</div>
+					<?php endforeach; ?>
+				</div><!-- end: Row  热门-->
+
+
+				
 
 				<div class="row"><!-- start: 标签 -->
 					<div class="span12">	
@@ -77,7 +81,7 @@
 				?>
 				<div class='item' style=" height:<?php echo $height;?>px">
 					<a  href="<?php echo Yii::app()->createUrl("Pic/one",array("id"=>$pic['id']));?>"  style="position:absolute; width:100%">
-						<img  data-original="<?php echo  PIC_THUMB_ROOT.$pic['path'].$pic['file_name'];?>" style=" height:<?php echo $height;?>px" alt="美女 图片 加载中.."  />
+						<img  data-original="<?php echo  PIC_THUMB_ROOT.$pic['path'].$pic['file_name'];?>" style=" height:<?php echo $height;?>px" alt=" 520小美女 图片 加载中.."  />
 						<span><i class="icon-info-sign"></i></span>
 					</a>
 				</div>

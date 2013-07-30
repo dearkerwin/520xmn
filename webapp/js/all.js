@@ -92,13 +92,13 @@ $(function(){
 	}
 
 	function initLazyLoad() {
-		$(".new img").lazyload({
+		$(".hot img").lazyload({
 			event : "sporty"
 		});
 		$(window).bind("load", function() { 
 		    var timeout = setTimeout(
 		    	function() {
-		    		$(".new img").trigger("sporty");
+		    		$(".hot img").trigger("sporty");
 		    	}, 1000
 		    );
 		});
@@ -119,7 +119,6 @@ $(function(){
 
 function push_pv(url) {
 	if(typeof(_hmt) != 'undefined'){
-		console.log(url);
 		_hmt.push(['_trackPageview', url]); 
 	}
 }
