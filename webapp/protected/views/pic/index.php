@@ -49,7 +49,7 @@
 
 				
 
-				<div class="row"><!-- start: 标签 -->
+				<div class="row" id='tag'><!-- start: 标签 -->
 					<div class="span12">	
 						<div class="title">
 							<h3><a href="#"> 标签  </a></h3>
@@ -61,11 +61,11 @@
 				</div><!-- end: Row 标签 -->
 				
 				
-				<div class="span12">
+				<!-- <div class="span12">
 					<div class="arrow-down">
 		   				 <i class="icon-circle-arrow-down"></i>
 					</div>
-				</div>
+				</div> -->
 				
 			</div><!-- end: Container -->
 		</div><!-- end: work-pattern -->
@@ -73,6 +73,11 @@
     	
     <div class="container">
 		<div class="row">
+			<div class="span12">	
+				<div class="title">
+					<h3><a href="<?php echo Yii::app()->createUrl("Pic/tagpic",array("tag"=>"rand"));?>"> 随机一下 <span class="more"> 更多>></span> </a></h3>
+				</div>
+			</div>
 			<!--start: image grid -->
 			<div id="masonny-div" class="rand">
 				<?php 

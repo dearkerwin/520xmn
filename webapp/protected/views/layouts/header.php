@@ -20,6 +20,7 @@
 									<li class=""><a href="<?php echo Yii::app()->createUrl("Pic/index");?>" data-target=".nav-collapse" class="anchorLink">首页</a></li>
 									<li><a href="<?php echo Yii::app()->createUrl("Pic/tagpic",array("tag"=>"new"));?>" class="anchorLink">最新</a></li>
 									<li><a href="<?php echo Yii::app()->createUrl("Pic/tagpic",array("tag"=>"hot"));?>" class="anchorLink">热门</a></li>
+									<li><a href="#tag-cloud" class="anchorLink">美女标签</a></li>
 								</ul>
 							</div>		
 						</div>		

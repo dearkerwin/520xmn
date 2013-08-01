@@ -61,7 +61,7 @@
 		<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.scrollUp.min.js"></script>
 		<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.lazyload.min.js"></script>
 	-->
-		<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/all.js"></script>
+		<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/all.js?v=1"></script>
 		
 		
     </body>
