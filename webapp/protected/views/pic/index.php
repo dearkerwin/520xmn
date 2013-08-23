@@ -93,6 +93,6 @@
 				<?php endforeach; ?>
 			</div>
 			<!-- end: image grid -->
-			<div id="next" ><a href="<?php echo Yii::app()->createUrl("Pic/randpage",array("page"=>2));?>"></a></div>
+			<div id="next"><a href="<?php echo Yii::app()->createUrl("Pic/randpage",array("page"=>2));?>"></a></div>
 			</div>
 	</div>

@@ -1948,6 +1948,24 @@ abstract class CActiveRecord extends CModel
 
 	}
 
+
+	/**
+	 * 根据用户的IP和当前日期生成不同的随机查询的seed
+	 */
+	protected function get_rand_seed($count) {
+		if($count == 0) return 0;
+		$user_IP = (isset($_SERVER["HTTP_VIA"])) ? $_SERVER["HTTP_X_FORWARDED_FOR"] : $_SERVER["REMOTE_ADDR"];
+		$today = date("Ymd");
+		$string = md5($user_IP.$today);
+		$reg='/(\d{4}(\.\d+)?)/is';//匹配数字的正则表达式
+		preg_match_all($reg,$string,$result);
+		if(is_array($result)&&!empty($result)&&!empty($result[1])&&!empty($result[1][0])){
+			$seed = $result[1][0]%$count;
+		}
+		return isset($seed)?$seed:0;
+
+	}
+
 	////////////////////////////////////////////////////////local defind///////////////////////////
 
 }

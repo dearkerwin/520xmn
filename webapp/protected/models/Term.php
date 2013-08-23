@@ -150,4 +150,54 @@ class Term extends CActiveRecord
 		}
 		return $tagsCount;
 	}
+
+	/**
+	 * 获取一个seed作为查询起点, 随机获取一个标签的几张图片
+	 */
+	public function getPicBySeed($tag, $page=1, $per=30){
+		$count = $this->getSingleTagCount($tag);
+		$count = isset( $count[$tag]) ?  $count[$tag] : 0 ;
+		if($count == 0) return array();
+		if( ($page-1)*$per > $count ) return array();	//当前查询页大于图片的数量
+
+		$seed = $this->get_rand_seed($count);		//获取一个查询起点
+		$begin = $seed + ($page-1)*$per;
+		$end = $seed + $page*$per;
+		if( $end <= $count  ){
+			$pic = $this->getTagPicWithLimt($tag, $begin, $per);	
+		}else if ( $begin > $count ){
+			$begin = $begin - $count;
+			$count1 = ($begin + $per > $seed) ? ($seed - $begin) : $per;
+			$pic = $this->getTagPicWithLimt($tag, $begin, $count1);
+		}else if( $begin <=$count && $end > $count ){
+			$count2 = $end - $count ;
+			$pic1 = $this->getTagPicWithLimt($tag, $begin, $per);
+			$pic2 = $this->getTagPicWithLimt($tag, 0, $count2);	
+			$pic = array_merge($pic1,$pic2);
+		}
+		return $pic;
+	}
+
+	
+
+	/**
+	 * 获取指定tag 的图片，从begin开始，获取count个图片
+	 */
+	function getTagPicWithLimt( $tag, $begin, $count){
+		$pics = array();
+		$config = array(
+				'condition' => 'name=:tagName',
+				'params' => array(':tagName'=> $tag),
+			);
+		$tagModel  = $this->find($config);
+		if( !empty($tagModel) ) {
+			$picsModel = $tagModel->picture(array('limit' => $count,'offset' =>$begin));
+			if( !empty($picsModel)) {
+				foreach ($picsModel as  $value) {
+					$pics[] = $value->getAttributes();
+				}
+			}	
+		}
+		return $this->__encodePicId($pics);	
+	}
 }

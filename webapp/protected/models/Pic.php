@@ -106,6 +106,7 @@ class Pic extends CActiveRecord
 
 	public function getNewPic($page = 1, $per = 30, $condition = null) {
 		if (empty($condition)) $condition = "1=1";
+		$pics = array();
 		$config = array(
 			'select' => 'id,path,file_name,title,width,height',
 			'limit' => $per,
@@ -140,7 +141,7 @@ class Pic extends CActiveRecord
 	public function getHotPic( $page = 1, $per = 30, $condition = null) {
 		if (empty($condition)) $condition = "1=1";
 		$config = array(
-			'select' => 'id,path,file_name,title,width,height',
+			'select' => 'id,path,file_name,view_count,title,width,height',
 			'limit' => $per,
 			'condition' => $condition ,
 			'order' => 'view_count DESC',
@@ -159,6 +160,48 @@ class Pic extends CActiveRecord
 		$config = array(
 			'select' => 'id,path,file_name,title,view_count,width,height',
 			'condition' => 'id in '.$in_string,	
+		);
+		$pics = $this->f($config);
+		return $this->__encodePicId($pics);
+	}
+
+
+	/**
+	 * 获取一个seed作为查询起点，获取几张图片
+	 */
+	public function getPicBySeed( $page=1, $per=30, $condition="1=1"){
+		$count = $this->count($condition);
+		if($count == 0) return array();
+		if( ($page-1)*$per > $count ) return array();	//当前查询页大于图片的数量
+
+		$seed = $this->get_rand_seed($count);		//获取一个查询起点
+		$begin = $seed + ($page-1)*$per;
+		$end = $seed + $page*$per;
+		if( $end <= $count || $begin > $count){
+			if ( $begin > $count){
+				$begin = $begin - $count;
+			} 
+			$pic = $this->getPicWithBegin( $begin, $per,  $condition);	
+		}else if( $begin <=$count && $end > $count ){
+			$count2 = $end - $count ;
+			$pic1 = $this->getPicWithBegin( $begin, $per,  $condition);
+			$pic2 = $this->getPicWithBegin( 0, $count2,  $condition);	
+			$pic = array_merge($pic1,$pic2);
+		}
+		return $pic;
+	}
+
+	/**
+	 * 从begin开始，获取count个图片，指定begin 和 count
+	 */
+	function getPicWithBegin(  $begin, $count, $condition="1=1"){
+		if (empty($condition)) $condition = "1=1";
+		$config = array(
+			'select' => 'id,path,file_name,title,width,height',
+			'limit' => $count,
+			'condition' => $condition ,
+			'order' => 'view_count DESC',
+			'offset' => $begin,
 		);
 		$pics = $this->f($config);
 		return $this->__encodePicId($pics);

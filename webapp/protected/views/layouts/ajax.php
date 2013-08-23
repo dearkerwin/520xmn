@@ -1,8 +1,4 @@
-<!DOCTYPE html>
-<html lang="en" >
-    <head>
-    </head>
-    <body>
+
 <?php echo $content;?>
 <script type="text/javascript">
 	var currentUrl = '<?php echo Yii::app()->request->getUrl();?>';
@@ -10,5 +6,3 @@
 		_hmt.push(['_trackPageview', currentUrl]); 
 	}
 </script>
-</body>
-</html>
