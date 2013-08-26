@@ -72,12 +72,14 @@
 	</div><!--end: work -->
     	
     <div class="container">
-		<div class="row">
-			<div class="span12">	
+    	<div class="row">
+    		<div class="span12">	
 				<div class="title">
 					<h3><a href="<?php echo Yii::app()->createUrl("Pic/tagpic",array("tag"=>"rand"));?>"> 随机一下 <span class="more"> 更多>></span> </a></h3>
 				</div>
 			</div>
+    	</div>
+		<div class="row">
 			<!--start: image grid -->
 			<div id="masonny-div" class="rand">
 				<?php 

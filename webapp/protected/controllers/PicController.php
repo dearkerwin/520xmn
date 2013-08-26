@@ -113,7 +113,10 @@ class PicController extends Controller
 		} else if ( $tag == "hot") {
 			$pics = Pic::model()->getHotPic();
 			$tag_name = "热门";
-		} else {
+		} else if ($tag == "rand"){
+			$pics = Pic::model()->getRandPic();
+			$tag_name = "随机一下";
+		}else {
 			// $pics = Term::model()->getTagPic($tag)
 			$pics = Term::model()->getPicBySeed($tag, 1);
 			$pic_count = Term::model()->getSingleTagCount($tag);
@@ -138,6 +141,8 @@ class PicController extends Controller
 			$pics = Pic::model()->getPicBySeed($page);
 		} else if ( $tag == "hot") {
 			$pics = Pic::model()->getHotPic($page);
+		}else if ($tag == "rand"){
+			$pics = Pic::model()->getRandPic();
 		} else {
 			// $pics = Term::model()->getTagPic($tag, $page);
 			$pics = Term::model()->getPicBySeed($tag, $page);
