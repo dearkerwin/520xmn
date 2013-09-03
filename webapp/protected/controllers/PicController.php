@@ -3,7 +3,7 @@
 class PicController extends Controller
 {
 	public $layout = 'index';
-	private $allow_page = 10; //允许加载的页面数量
+	private $allow_page = 100; //允许加载的页面数量
 	public function actionIndex()
 	{
 		// new pic == 3天之内的 + 随机图片

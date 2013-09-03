@@ -95,6 +95,9 @@
 				<?php endforeach; ?>
 			</div>
 			<!-- end: image grid -->
-			<div id="next"><a href="<?php echo Yii::app()->createUrl("Pic/randpage",array("page"=>2));?>"></a></div>
+			<div class="span12"  id="next" >
+				<a href="<?php echo Yii::app()->createUrl("Pic/randpage",array("page"=>2));?>"></a>
+				<p>↓加载更多美女↓</p>
 			</div>
+		</div>
 	</div>

@@ -50,6 +50,21 @@ $(function(){
 				initColorboxItem();
 				currentPage ++;
 				push_pv(ajaxPath+currentPage);
+
+				if( currentPage >=3 ){
+					// 取消scroll绑定
+				    $(window).unbind('.infscr');
+				  	// 手动点击的元素
+				    $('#next').click(function(){
+				      	$('#masonny-div').infinitescroll('retrieve');
+				    });
+
+				    // 如果没有下一页，去掉分页
+				    $(document).ajaxError(function(e,xhr,opt){
+				      if (xhr.status == 404) $('#next').remove();
+				    });
+				    $('#next').show();
+				}
 				
 	    	}
 	    );

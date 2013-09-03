@@ -331,6 +331,42 @@ h3 {
   overflow: hidden;
 }
 
+#next {
+  margin: 20px 0px;
+  height: 22px;
+  padding: 14px;
+  background: rgb(232, 136, 28);
+  font-size: 20px;
+  color: #000;
+  text-align: center;
+  width: 100%;
+  
+  cursor:pointer;
+  -webkit-transition:opacity 0.1s linear 0s;
+     -moz-transition:opacity 0.1s linear 0s;
+       -o-transition:opacity 0.1s linear 0s;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0.6)";
+  filter: alpha(opacity=0.6);
+  -khtml-opacity: 0.6;
+  -moz-opacity: 0.6;
+  opacity: 0.6;   
+}
+#next p{
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=1)";
+  filter: alpha(opacity=1);
+  -khtml-opacity: 1;
+  -moz-opacity: 1;
+  opacity: 1;   
+}
+
+#next:hover{
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0.9)";
+  filter: alpha(opacity=0.9);
+  -khtml-opacity: 0.9;
+  -moz-opacity: 0.9;
+  opacity: 0.9;
+}
+
 /* ================scrollup ===============*/
 /* Image style */
 #scrollUp {
