@@ -44,7 +44,8 @@ $(function(){
 					msgText : "网速不给力,美女马上就来,不要急嘛...",
 				},
 	    	}, 
-		    function( newElements ) {
+		    function( newElements, opt ) {
+		    	// console.log(opt.state.currPage);
 		        var $newElems = $( newElements );
 				$container.masonry( 'appended', $newElems, true ); 
 				initColorboxItem();

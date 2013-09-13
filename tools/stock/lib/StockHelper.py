@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-import urllib  
+import urllib 
+import urllib2 
 import time
   
   
@@ -40,6 +41,12 @@ class StockHelper():
         if self.proxy != '':
             return   urllib.urlopen(url, proxies=self.proxy)  
         return urllib.urlopen(url)
+
+        # proxy_support = urllib2.ProxyHandler(self.proxy)
+        # opener = urllib2.build_opener(proxy_support, urllib2.HTTPHandler)
+        # urllib2.install_opener(opener)
+
+        # return urllib2.urlopen(url)
 
     def get_chinese_name(self, stock_id):
         url = 'http://hq.sinajs.cn/list=' + self.__format_to_sina_symbol_from_num(stock_id)
