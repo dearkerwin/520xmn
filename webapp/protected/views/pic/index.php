@@ -27,23 +27,26 @@
 				</div><!-- end: Row 最新 -->
 
 
+
 				<div class="row hot"><!-- start: Row 热门 -->
+				<!--
 					<div class="span12">	
 						<div class="title">
 							<h3><a href="<?php echo Yii::app()->createUrl("Pic/tagpic",array("tag"=>"hot"));?>"> 热门 <span class="more"> 更多>></span> </a></h3>
 						</div>
 					</div>
 
-					<?php foreach ($hot_pics as  $pic): ?>
+					<?php //foreach ($hot_pics as  $pic): ?>
 					<div class="span3 span3-height">	
 						<div class="thumbs">
-							<a href="<?php echo Yii::app()->createUrl("Pic/one",array("id"=>$pic['id']));?>"  class="picture picture-hot">
+							<a href="<?php //echo Yii::app()->createUrl("Pic/one",array("id"=>$pic['id']));?>"  class="picture picture-hot">
 								<img class="img-polaroid" alt="美女 图片 520xmn"   src="<?php echo WEB_ROOT;?>images/loazload.gif" data-original="<?php echo PIC_THUMB_ROOT.$pic['path'].$pic['file_name'];?>">
 								<span><i class="icon-info-sign"></i></span>
 							</a>
 						</div>
 					</div>
-					<?php endforeach; ?>
+					<?php //endforeach; ?>
+					-->
 				</div><!-- end: Row  热门-->
 
 
@@ -97,7 +100,7 @@
 			<!-- end: image grid -->
 			<div class="span12"  id="next" >
 				<a href="<?php echo Yii::app()->createUrl("Pic/randpage",array("page"=>2));?>"></a>
-				<p>↓加载更多美女↓</p>
+				<p>↓点击加载更多美女↓</p>
 			</div>
 		</div>
 	</div>
