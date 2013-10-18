@@ -126,7 +126,7 @@ $(function(){
 		    var timeout = setTimeout(
 		    	function() {
 		    		$(".rand img").trigger("sporty1");
-		    	}, 3000
+		    	}, 1000
 		    );
 		});
 	}
