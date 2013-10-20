@@ -1,6 +1,15 @@
 # -*- coding:utf-8 -*-
-# Created on 2013-4-06
-# @author: kerwin
+""" 
+Created on 2013-4-06
+mysql heper 提供功能：
+    mysql的基本操作
+ eg:
+    mysqlHelpr = MySQLHelper('localhost','root','123456','520xmn')
+   count = mysqlHelpr.find('pic', fields="count(*)")
+
+version 1.0
+author kerwin
+"""
 
 import MySQLdb
 class MySQLHelper:
@@ -55,7 +64,7 @@ class MySQLHelper:
              d.append(_d)
         return d
 
-    def find(self, tablename, condition, fields= "*"):
+    def find(self, tablename, condition='1=1', fields= "*"):
         field = self._getFields(fields)
         condition = self._getConditions(condition)
         sql="select "+field+ " from "+ tablename+ " where "+ condition + " limit 1"
@@ -65,7 +74,7 @@ class MySQLHelper:
         else:
             return ret
 
-    def findAll(self, tablename, condition, fields = "*"): 
+    def findAll(self, tablename, condition='1=1', fields = "*"): 
         field = self._getFields(fields)
         condition = self._getConditions(condition)
         sql="select "+field+ " from "+ tablename+ " where "+ condition
@@ -126,3 +135,13 @@ class MySQLHelper:
     def close(self):
         self.cur.close()
         self.conn.close()
+
+def test():
+    mysqlHelpr = MySQLHelper('localhost','root','123456','520xmn')
+    count = mysqlHelpr.find('pic', fields="count(*)")
+    print count
+    
+
+    
+if __name__ == '__main__':
+    test()  
