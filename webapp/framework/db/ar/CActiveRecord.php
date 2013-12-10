@@ -1954,7 +1954,7 @@ abstract class CActiveRecord extends CModel
 	 */
 	protected function get_rand_seed($count) {
 		if($count == 0) return 0;
-		$user_IP = (isset($_SERVER["HTTP_VIA"])) ? $_SERVER["HTTP_X_FORWARDED_FOR"] : $_SERVER["REMOTE_ADDR"];
+		$user_IP = $this->getIP();
 		$today = date("Ymd");
 		$string = md5($user_IP.$today);
 		$reg='/(\d{4}(\.\d+)?)/is';//匹配数字的正则表达式
@@ -1965,6 +1965,24 @@ abstract class CActiveRecord extends CModel
 		return isset($seed)?$seed:0;
 
 	}
+
+
+	private function getIP() { 
+		if (getenv('HTTP_CLIENT_IP')) { 
+			$ip = getenv('HTTP_CLIENT_IP'); 
+		} elseif (getenv('HTTP_X_FORWARDED_FOR')) { 
+			$ip = getenv('HTTP_X_FORWARDED_FOR'); 
+		} elseif (getenv('HTTP_X_FORWARDED')) { 
+			$ip = getenv('HTTP_X_FORWARDED'); 
+		} elseif (getenv('HTTP_FORWARDED_FOR')) { 
+			$ip = getenv('HTTP_FORWARDED_FOR'); 
+		} elseif (getenv('HTTP_FORWARDED')) { 
+			$ip = getenv('HTTP_FORWARDED'); 
+		} else { 
+			$ip = $_SERVER['REMOTE_ADDR']; 
+		} 
+		return $ip; 
+	} 
 
 	////////////////////////////////////////////////////////local defind///////////////////////////
 
