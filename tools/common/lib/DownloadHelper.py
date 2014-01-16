@@ -81,7 +81,7 @@ class DownloadHelper():
             if resp.status == 200:       # normal 'found' status
                 found = True
             elif resp.status == 302:     # recurse on temporary redirect
-                found = httpExists(urlparse.urljoin(url,resp.getheader('location', '')))
+                found = self.httpExists(urlparse.urljoin(url,resp.getheader('location', '')))
             else:                        # everything else -> not found
                 print "Status %d %s : %s" % (resp.status, resp.reason, url)
                 found = False
