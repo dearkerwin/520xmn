@@ -153,4 +153,13 @@ class PicController extends Controller
 	}
 
 
+	/** 
+	 * 后门，给iso用
+	 */
+	public function actionDaily($page) {
+		$this->layout = "ajax";
+		$this->render('dailypage',array(
+			'pics' => Pic::model()->getRandPic()
+		));
+	}
 }
